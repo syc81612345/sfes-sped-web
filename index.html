@@ -131,6 +131,28 @@
     <!-- Populated by JS -->
   </main>
 
+  <!-- IEP 管理員登入 Modal -->
+  <dialog id="iepAdminLoginDialog" class="p-0 rounded-3xl shadow-2xl backdrop:bg-slate-900/50 border-2 border-teal-200 max-w-sm w-full m-auto">
+    <div class="p-6 space-y-4 bg-white text-center">
+      <div class="w-12 h-12 rounded-2xl bg-teal-100 text-teal-800 text-2xl flex items-center justify-center mx-auto">🔐</div>
+      <div>
+        <h3 class="text-lg font-black text-slate-900">IEP 預約管理驗證</h3>
+        <p class="text-xs text-slate-500 mt-1">請輸入 4 位數管理員密碼檢視並管理預約名單</p>
+      </div>
+      <input id="iepAdminPasswordInput" type="password" inputmode="numeric" maxlength="4" placeholder="••••"
+        class="w-36 text-center text-2xl tracking-[0.35em] py-2 border-2 border-teal-200 rounded-2xl focus:border-teal-500 focus:outline-none" />
+      <p id="iepAdminPasswordError" class="text-xs text-rose-600 font-bold min-h-[1.2rem]"></p>
+      <div class="flex items-center justify-center gap-3">
+        <button id="btnCancelIepAdminLogin" type="button" class="px-4 py-2 text-xs font-bold text-slate-500 hover:text-slate-800">
+          取消
+        </button>
+        <button id="btnSubmitIepAdminLogin" type="button" class="px-5 py-2 rounded-xl bg-teal-600 hover:bg-teal-700 text-white font-black text-xs">
+          驗證登入
+        </button>
+      </div>
+    </div>
+  </dialog>
+
   <!-- Cloud Directory Modal -->
   <div id="cloudModal" class="fixed inset-0 z-50 hidden bg-slate-900/50 backdrop-blur-xs flex items-center justify-center p-4">
     <div class="bg-white rounded-3xl max-w-3xl w-full max-h-[82vh] flex flex-col shadow-2xl border-2 border-teal-200 overflow-hidden">
@@ -172,7 +194,7 @@
   </div>
 
   <script>
-    const GAS_WEB_APP_URL = "https://script.google.com/macros/s/AKfycbyNDaz-ZJSkwa0F6aoxpIr6GyFBPENFfmvJsDHCY6edaXFmWyKf9Rq22CVuGGIcnmuOvQ/exec";
+    const GAS_WEB_APP_URL = "https://script.google.com/macros/s/AKfycbx1FDP8XIuJNI4gEuFV-_4X0-TnsOj8HDU38jTU518X8_30WAFfyW5bn6uEIfgvO4yIEA/exec";
     const REPORT_SYSTEM_URL = "https://kitty0510-code.github.io/special-education-report/app.html#";
 
     const SITE_CONFIG = {
@@ -192,7 +214,7 @@
           { id: "ld", icon: "📘", name: "學習障礙提報相關", categoryBadge: "學習障礙", description: "學習障礙轉介前介入紀錄、觀察表件與提報檔案。", url: "https://drive.google.com/drive/folders/1hUWeFRXGhU0LWsKZy4fS2fBCrbD67EbL" },
           { id: "ebd", icon: "🧡", name: "情緒障礙提報相關", categoryBadge: "情緒行為障礙", description: "情緒行為障礙觀察紀錄、行為功能分析與轉介表件。", url: "https://drive.google.com/drive/folders/17zuHswvRHE3XNZ2e6XaJQEeJij0rH4SL" },
           { id: "id", icon: "🌱", name: "智能障礙提報相關", categoryBadge: "智能障礙", description: "智能障礙適應行為觀察、學習能力評估與提報表件。", url: "https://drive.google.com/drive/folders/1Jwrja0F1kAMGbar9A4ob11BmzpG14Aqf" },
-          { id: "asd", icon: "🧩", name: "自閉症提報相關", categoryBadge: "自閉症", description: "自閉症人際互動、溝通與固著行為觀察及提報表件。", url: "https://drive.google.com/drive/folders/1f72loA6pU_J1j98LEXaG0xM6JdKXPS7i?usp=drive_link" }
+          { id: "asd", icon: "🧩", name: "自閉症提報相關", categoryBadge: "自閉症", description: "自閉症人際互動、溝通與固著行為觀察及提報表件。", url: "https://drive.google.com/drive/folders/1f72loA6pU_J1j98LEXaG14Aqf" }
         ],
         criteriaCategories: [
           {
@@ -370,6 +392,11 @@
     let activePbsFilter = "all";
     let activeLinksFilter = "all";
 
+    // IEP 管理員狀態
+    let isIepAdminUnlocked = false;
+    let iepAdminRecords = [];
+    let isIepAdminDrawerOpen = false;
+
     let openAccordions = {
       "crit-legal": true,
       "crit-points": true,
@@ -522,20 +549,140 @@
               <span class="w-12 h-12 rounded-2xl bg-teal-100 border border-teal-300 flex items-center justify-center text-2xl">📅</span>
               <div>
                 <h2 class="text-xl sm:text-2xl font-black text-teal-950">新豐國小IEP會議預約</h2>
-                <p class="text-xs sm:text-sm text-slate-500">資料同步至雲端試算表</p>
+                <p class="text-xs sm:text-sm text-slate-500">預約資料即時連線試算表・支援特教教師直接管理</p>
               </div>
             </div>
-            <a href="${GAS_WEB_APP_URL}" target="_blank" rel="noopener noreferrer"
-              class="px-4 py-2.5 rounded-2xl bg-teal-50 hover:bg-teal-100 text-teal-900 border-2 border-teal-200 font-bold text-xs sm:text-sm transition flex items-center gap-1.5">
-              <span>在新視窗中開啟預約系統 ↗</span>
-            </a>
+            <div class="flex items-center gap-2">
+              <button type="button" id="btnToggleIepAdmin"
+                class="px-4 py-2.5 rounded-2xl bg-amber-50 hover:bg-amber-100 text-amber-900 border-2 border-amber-200 font-bold text-xs sm:text-sm transition flex items-center gap-1.5">
+                <span>🔐</span>
+                <span>${isIepAdminDrawerOpen ? "收合預約管理" : "預約名單管理 (管理員)"}</span>
+              </button>
+              <a href="${GAS_WEB_APP_URL}" target="_blank" rel="noopener noreferrer"
+                class="px-4 py-2.5 rounded-2xl bg-teal-50 hover:bg-teal-100 text-teal-900 border-2 border-teal-200 font-bold text-xs sm:text-sm transition flex items-center gap-1.5">
+                <span>在新分頁開啟 ↗</span>
+              </a>
+            </div>
           </div>
 
+          <!-- 管理員預約名單後台抽屜 -->
+          <div id="iepAdminDrawer" class="${isIepAdminDrawerOpen ? 'block' : 'hidden'} bg-amber-50/40 border-2 border-amber-200 rounded-3xl p-5 sm:p-6 space-y-4 transition">
+            <div class="flex flex-wrap items-center justify-between gap-2 border-b border-amber-200 pb-3">
+              <div>
+                <h3 class="font-black text-slate-900 text-base sm:text-lg flex items-center gap-2">
+                  <span>📋</span>
+                  <span>全校 IEP 預約總覽與時段管理</span>
+                </h3>
+                <p class="text-xs text-slate-500">點擊刪除即可將預約自試算表中移除，被取消的時段將立即變回可預約狀態。</p>
+              </div>
+              <button type="button" id="btnRefreshIepAdmin" class="px-3.5 py-1.5 rounded-xl bg-white hover:bg-slate-50 border border-slate-200 text-slate-700 font-bold text-xs">
+                🔄 重新整理清單
+              </button>
+            </div>
+
+            <div class="w-full overflow-x-auto rounded-2xl border border-amber-200 bg-white">
+              <table class="w-full text-left text-xs sm:text-sm">
+                <thead class="bg-amber-100/60 border-b border-amber-200 text-amber-950 font-black">
+                  <tr>
+                    <th class="p-3">日期</th>
+                    <th class="p-3">節數</th>
+                    <th class="p-3">會議室 / 地點</th>
+                    <th class="p-3">預約人員</th>
+                    <th class="p-3">提交時間</th>
+                    <th class="p-3 text-right">操作</th>
+                  </tr>
+                </thead>
+                <tbody id="iepAdminTableBody" class="divide-y divide-amber-100">
+                  ${renderIepAdminTableRows()}
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- 預約系統 iframe -->
           <div class="w-full rounded-2xl overflow-hidden border-2 border-teal-200 bg-white shadow-inner">
-            <iframe src="${GAS_WEB_APP_URL}" class="w-full border-0" style="min-height: 800px; height: 100vh;" title="新豐國小IEP會議預約系統"></iframe>
+            <iframe id="iepIframe" src="${GAS_WEB_APP_URL}" class="w-full border-0" style="min-height: 800px; height: 100vh;" title="新豐國小IEP會議預約系統"></iframe>
           </div>
         </div>
       `;
+    }
+
+    function renderIepAdminTableRows() {
+      if (!iepAdminRecords || iepAdminRecords.length === 0) {
+        return `<tr><td colspan="6" class="p-6 text-center text-slate-400">目前尚無任何會議預約紀錄</td></tr>`;
+      }
+      return iepAdminRecords.map(r => `
+        <tr class="hover:bg-amber-50/50 transition">
+          <td class="p-3 font-bold text-slate-900">${r.date}</td>
+          <td class="p-3 font-bold text-teal-800">${r.sheetName === '其他' ? r.slot : `第 ${r.slot} 節`}</td>
+          <td class="p-3">${r.room}</td>
+          <td class="p-3 font-bold text-slate-800">${r.attendees}</td>
+          <td class="p-3 text-slate-500 text-xs">${r.submittedAt}</td>
+          <td class="p-3 text-right">
+            <button type="button" class="btn-delete-booking text-rose-600 hover:text-rose-800 font-bold underline text-xs"
+              data-sheet="${r.sheetName}" data-row="${r.rowNumber}" data-date="${r.date}" data-slot="${r.slot}">
+              刪除 / 釋出
+            </button>
+          </td>
+        </tr>
+      `).join('');
+    }
+
+    // 呼叫 GAS 後端取得預約紀錄
+    async function fetchIepBookings(password) {
+      showToast("正在讀取試算表預約清單...", "⏳");
+      try {
+        const response = await fetch(GAS_WEB_APP_URL, {
+          method: "POST",
+          headers: { "Content-Type": "text/plain;charset=utf-8" },
+          body: JSON.stringify({ action: "getAdminBookings", password: password })
+        });
+        const result = await response.json();
+        if (result.success) {
+          iepAdminRecords = result.bookings;
+          isIepAdminUnlocked = true;
+          isIepAdminDrawerOpen = true;
+          renderMainViewport();
+          showToast(`已載入 ${iepAdminRecords.length} 筆預約紀錄`, "📋");
+        } else {
+          showToast(result.message || "驗證失敗", "❌");
+        }
+      } catch (err) {
+        showToast("無法連線至預約系統後端，請確認網路或稍後再試", "⚠️");
+      }
+    }
+
+    // 呼叫 GAS 後端刪除預約
+    async function executeDeleteBooking(sheetName, rowNumber, date, slot) {
+      if (!confirm(`確定要刪除「${date} (${slot})」這筆會議預約嗎？\n刪除後該時段將立即開放重新預約。`)) return;
+
+      showToast("正在刪除預約並釋出時段...", "⏳");
+      try {
+        const response = await fetch(GAS_WEB_APP_URL, {
+          method: "POST",
+          headers: { "Content-Type": "text/plain;charset=utf-8" },
+          body: JSON.stringify({
+            action: "deleteBooking",
+            password: "0000",
+            sheetName: sheetName,
+            rowNumber: rowNumber,
+            date: date,
+            slot: slot
+          })
+        });
+        const result = await response.json();
+        if (result.success) {
+          showToast("預約已成功刪除，時段已釋出！", "✅");
+          // 重新載入清單並重新整理 iframe
+          await fetchIepBookings("0000");
+          const iframe = document.getElementById("iepIframe");
+          if (iframe) iframe.src = iframe.src;
+        } else {
+          showToast(result.message || "刪除失敗", "❌");
+        }
+      } catch (err) {
+        showToast("刪除連線逾時，請重試", "⚠️");
+      }
     }
 
     function renderReferralView() {
@@ -559,7 +706,7 @@
               </a>
             </div>
 
-            <!-- 線上提報系統專用外連卡片（無名字、低調直接） -->
+            <!-- 線上提報系統專用外連卡片 -->
             <div class="bg-gradient-to-r from-teal-50 via-white to-amber-50/70 border-2 border-teal-200 rounded-3xl p-6 sm:p-8 flex flex-col md:flex-row items-start md:items-center justify-between gap-5 shadow-xs">
               <div class="space-y-2">
                 <div class="inline-block text-xs font-black px-3 py-1 rounded-full bg-teal-100 text-teal-900 border border-teal-200">
@@ -748,7 +895,6 @@
       `;
     }
 
-    /* 刪除 boring 的親師溝通指南，只保留簡潔實用的三大運作模式 */
     function renderCommunicationView() {
       return `
         <section class="warm-card p-6 sm:p-8 space-y-6 w-full">
@@ -1118,6 +1264,36 @@
         });
       });
 
+      // IEP 管理員相關事件
+      const btnToggleIepAdmin = document.getElementById("btnToggleIepAdmin");
+      if (btnToggleIepAdmin) {
+        btnToggleIepAdmin.addEventListener("click", () => {
+          if (!isIepAdminUnlocked) {
+            document.getElementById("iepAdminPasswordInput").value = "";
+            document.getElementById("iepAdminPasswordError").textContent = "";
+            document.getElementById("iepAdminLoginDialog").showModal();
+          } else {
+            isIepAdminDrawerOpen = !isIepAdminDrawerOpen;
+            renderMainViewport();
+          }
+        });
+      }
+
+      const btnRefreshIepAdmin = document.getElementById("btnRefreshIepAdmin");
+      if (btnRefreshIepAdmin) {
+        btnRefreshIepAdmin.addEventListener("click", () => fetchIepBookings("0000"));
+      }
+
+      vp.querySelectorAll(".btn-delete-booking").forEach(btn => {
+        btn.addEventListener("click", () => {
+          const sheet = btn.getAttribute("data-sheet");
+          const row = parseInt(btn.getAttribute("data-row"), 10);
+          const date = btn.getAttribute("data-date");
+          const slot = btn.getAttribute("data-slot");
+          executeDeleteBooking(sheet, row, date, slot);
+        });
+      });
+
       vp.querySelectorAll(".crit-tab-btn").forEach(btn => {
         btn.addEventListener("click", () => {
           activeCriteriaId = btn.getAttribute("data-crit-id");
@@ -1338,6 +1514,26 @@
       cloudModal.addEventListener("click", e => {
         if (e.target === cloudModal) cloudModal.classList.add("hidden");
       });
+
+      // IEP 管理員對話框事件
+      document.getElementById("btnCancelIepAdminLogin").onclick = () => {
+        document.getElementById("iepAdminLoginDialog").close();
+      };
+
+      const handleIepLogin = () => {
+        const pwd = document.getElementById("iepAdminPasswordInput").value;
+        if (pwd !== "0000") {
+          document.getElementById("iepAdminPasswordError").textContent = "密碼錯誤，請重新輸入。";
+          return;
+        }
+        document.getElementById("iepAdminLoginDialog").close();
+        fetchIepBookings("0000");
+      };
+
+      document.getElementById("btnSubmitIepAdminLogin").onclick = handleIepLogin;
+      document.getElementById("iepAdminPasswordInput").onkeydown = e => {
+        if (e.key === "Enter") handleIepLogin();
+      };
     });
   </script>
 </body>
