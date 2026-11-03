@@ -4,8 +4,10 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
   <title>南投縣新豐國小特教資源網｜鑑定提報・IEP會議預約・特教宣導與支持服務</title>
+  
   <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com/3.4.17"></script>
+  
   <!-- Google Fonts: Noto Sans TC & Inter -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -153,7 +155,7 @@
     </div>
   </dialog>
 
-  <!-- 🌟 法規條文專用彈窗 (Modal) -->
+  <!-- 法規條文專用彈窗 (Modal) -->
   <dialog id="legalModalDialog" class="p-0 rounded-3xl shadow-2xl backdrop:bg-slate-900/50 border-2 border-teal-200 max-w-2xl w-full m-auto">
     <div class="p-6 sm:p-8 space-y-4 bg-white">
       <div class="flex items-start justify-between border-b border-teal-100 pb-3">
@@ -225,7 +227,7 @@
   </div>
 
   <script>
-    const GAS_WEB_APP_URL = "https://script.google.com/macros/s/AKfycbyNDaz-ZJSkwa0F6aoxpIr6GyFBPENFfmvJsDHCY6edaXFmWyKf9Rq22CVuGGIcnmuOvQ/exec";
+    const GAS_WEB_APP_URL = "https://script.google.com/macros/s/AKfycbxvIphSEgKHsAq_IpPW5AkIWef2yrNdbJyyoyxuA7zfcjkBjQelTsYeQ8gAnhLr23mgbA/exec";
     const REPORT_SYSTEM_URL = "https://kitty0510-code.github.io/special-education-report/app.html#";
 
     const SITE_CONFIG = {
@@ -446,7 +448,7 @@
       { id: "iep", icon: "📅", label: "IEP 會議預約" },
       { id: "referral", icon: "📋", label: "鑑定提報專區" },
       { id: "advocacy", icon: "💡", label: "特教宣導資源" },
-      { id: "communication", icon: "💬", label: "資源班運作模式" },
+      { id: "communication", icon: "🏫", label: "資源班運作模式" },
       { id: "links", icon: "🔗", label: "特教好站連結" }
     ];
 
@@ -466,7 +468,6 @@
     let activePbsFilter = "all";
     let activeLinksFilter = "all";
 
-    // IEP 管理員狀態
     let isIepAdminUnlocked = false;
     let iepAdminRecords = [];
     let isIepAdminDrawerOpen = false;
@@ -546,7 +547,9 @@
             <!-- Left Info Area -->
             <div class="lg:col-span-7 space-y-6">
               <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-teal-100/90 text-teal-900 text-xs sm:text-sm font-black border border-teal-200 shadow-2xs">
-              <span>🏫 ${info.schoolName}</span>
+                <span>🏫 ${info.schoolName}</span>
+                <span>·</span>
+                <span>特殊教育資源</span>
               </div>
               <h2 class="text-3xl sm:text-4xl md:text-5xl font-black text-teal-950 tracking-tight leading-tight">
                 ${info.portalTitle}
@@ -586,7 +589,7 @@
               </button>
 
               <button type="button" data-goto-tab="communication" class="hero-jump-btn text-left p-5 rounded-2xl bg-white hover:bg-emerald-50/60 border-2 border-emerald-200 transition shadow-2xs group">
-                <div class="text-3xl mb-2 group-hover:scale-110 transition">💬</div>
+                <div class="text-3xl mb-2 group-hover:scale-110 transition">🏫</div>
                 <div class="font-black text-slate-900 text-sm sm:text-base">資源班運作模式</div>
                 <div class="text-xs sm:text-sm text-emerald-800 font-bold mt-1.5">
                   抽離外加與服務型態 →
@@ -615,6 +618,7 @@
               <span class="w-12 h-12 rounded-2xl bg-teal-100 border border-teal-300 flex items-center justify-center text-2xl">📅</span>
               <div>
                 <h2 class="text-xl sm:text-2xl font-black text-teal-950">新豐國小IEP會議預約</h2>
+                <p class="text-xs sm:text-sm text-slate-500">預約資料即時連線試算表・支援特教教師直接管理</p>
               </div>
             </div>
             <div class="flex items-center gap-2">
@@ -630,6 +634,7 @@
             </div>
           </div>
 
+          <!-- 管理員預約名單抽屜 -->
           <div id="iepAdminDrawer" class="${isIepAdminDrawerOpen ? 'block' : 'hidden'} bg-amber-50/40 border-2 border-amber-200 rounded-3xl p-5 sm:p-6 space-y-4 transition">
             <div class="flex flex-wrap items-center justify-between gap-2 border-b border-amber-200 pb-3">
               <div>
@@ -663,6 +668,7 @@
             </div>
           </div>
 
+          <!-- 預約系統 iframe -->
           <div class="w-full rounded-2xl overflow-hidden border-2 border-teal-200 bg-white shadow-inner">
             <iframe id="iepIframe" src="${GAS_WEB_APP_URL}" class="w-full border-0" style="min-height: 800px; height: 100vh;" title="新豐國小IEP會議預約系統"></iframe>
           </div>
@@ -691,15 +697,15 @@
       `).join('');
     }
 
-    async function fetchIepBookings(password) {
+    // 🌟 透過動態 script 標籤 (JSONP) 讀取預約紀錄，免受 CORS 限制
+    function fetchIepBookings(password) {
       showToast("正在讀取試算表預約清單...", "⏳");
-      try {
-        const response = await fetch(GAS_WEB_APP_URL, {
-          method: "POST",
-          headers: { "Content-Type": "text/plain;charset=utf-8" },
-          body: JSON.stringify({ action: "getAdminBookings", password: password })
-        });
-        const result = await response.json();
+      
+      const callbackName = "iepCallback_" + Date.now();
+      window[callbackName] = function(result) {
+        delete window[callbackName];
+        if (script.parentNode) script.parentNode.removeChild(script);
+
         if (result.success) {
           iepAdminRecords = result.bookings;
           isIepAdminUnlocked = true;
@@ -709,43 +715,54 @@
         } else {
           showToast(result.message || "驗證失敗", "❌");
         }
-      } catch (err) {
-        showToast("無法連線至預約系統後端，請確認網路或稍後再試", "⚠️");
-      }
+      };
+
+      const script = document.createElement("script");
+      script.src = `${GAS_WEB_APP_URL}?action=getAdminBookings&password=${encodeURIComponent(password)}&callback=${callbackName}`;
+      script.onerror = function() {
+        showToast("無法連線至預約系統後端，請確認部署版本", "⚠️");
+      };
+      document.body.appendChild(script);
     }
 
-    async function executeDeleteBooking(sheetName, rowNumber, date, slot) {
+    // 🌟 透過 JSONP 模式刪除預約並釋出時段
+    function executeDeleteBooking(sheetName, rowNumber, date, slot) {
       if (!confirm(`確定要刪除「${date} (${slot})」這筆會議預約嗎？\n刪除後該時段將立即開放重新預約。`)) return;
 
       showToast("正在刪除預約並釋出時段...", "⏳");
-      try {
-        const response = await fetch(GAS_WEB_APP_URL, {
-          method: "POST",
-          headers: { "Content-Type": "text/plain;charset=utf-8" },
-          body: JSON.stringify({
-            action: "deleteBooking",
-            password: "0000",
-            sheetName: sheetName,
-            rowNumber: rowNumber,
-            date: date,
-            slot: slot
-          })
-        });
-        const result = await response.json();
+      const callbackName = "iepDelCallback_" + Date.now();
+      
+      window[callbackName] = function(result) {
+        delete window[callbackName];
+        if (script.parentNode) script.parentNode.removeChild(script);
+
         if (result.success) {
           showToast("預約已成功刪除，時段已釋出！", "✅");
-          await fetchIepBookings("0000");
+          fetchIepBookings("0000");
           const iframe = document.getElementById("iepIframe");
           if (iframe) iframe.src = iframe.src;
         } else {
           showToast(result.message || "刪除失敗", "❌");
         }
-      } catch (err) {
+      };
+
+      const script = document.createElement("script");
+      const params = new URLSearchParams({
+        action: "deleteBooking",
+        password: "0000",
+        sheetName: sheetName,
+        rowNumber: rowNumber,
+        date: date,
+        slot: slot,
+        callback: callbackName
+      });
+      script.src = `${GAS_WEB_APP_URL}?${params.toString()}`;
+      script.onerror = function() {
         showToast("刪除連線逾時，請重試", "⚠️");
-      }
+      };
+      document.body.appendChild(script);
     }
 
-    /* 🌟 彈出法規條文 Modal 函式 */
     function openLegalModal(criteriaId) {
       const crit = SITE_CONFIG.referralZone.criteriaCategories.find(c => c.id === criteriaId);
       if (!crit) return;
@@ -757,7 +774,6 @@
       document.getElementById("legalModalDialog").showModal();
     }
 
-    /* 🌟 鑑定提報專區：雙頁籤分流 + 四大佐證卡片 + 法規彈窗 */
     function renderReferralView() {
       const ref = SITE_CONFIG.referralZone;
       const currentCrit = ref.criteriaCategories.find(c => c.id === activeCriteriaId) || ref.criteriaCategories[0];
@@ -803,7 +819,7 @@
               </button>
             </div>
 
-            <!-- ===================== 頁籤一：快速提報與表件下載 ===================== -->
+            <!-- 頁籤一：快速提報與表件下載 -->
             ${activeReferralSubtab === "quick" ? `
               <div class="space-y-6">
                 <!-- 超醒目提報大卡片 -->
@@ -881,7 +897,7 @@
               </div>
             ` : ''}
 
-            <!-- ===================== 頁籤二：課堂觀察與初篩重點 ===================== -->
+            <!-- 頁籤二：課堂觀察與初篩重點 -->
             ${activeReferralSubtab === "criteria" ? `
               <div class="space-y-6">
                 <!-- 障別切換按鈕 -->
