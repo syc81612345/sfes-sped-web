@@ -450,7 +450,8 @@
       { id: "referral", icon: "📋", label: "鑑定提報專區" },
       { id: "advocacy", icon: "💡", label: "特教宣導資源" },
       { id: "communication", icon: "🏫", label: "資源班運作模式" },
-      { id: "links", icon: "🔗", label: "特教好站連結" }
+      { id: "links", icon: "🔗", label: "特教好站連結" },
+      { id: "specialTools", icon: "🧰", label: "特教工具箱" }
     ];
 
     const ADVOCACY_SUBTABS = [
@@ -472,6 +473,10 @@
     let isIepAdminUnlocked = false;
     let iepAdminRecords = [];
     let isIepAdminDrawerOpen = false;
+
+    // 🔒 特教工具箱解鎖狀態與後端資料
+    let isSpecialToolsUnlocked = false;
+    let specialToolsData = [];
 
     function showToast(msg, icon = "✨") {
       const box = document.getElementById("toastBox");
@@ -550,6 +555,7 @@
               <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-teal-100/90 text-teal-900 text-xs sm:text-sm font-black border border-teal-200 shadow-2xs">
                 <span>🏫 ${info.schoolName}</span>
                 <span>·</span>
+                <span>特殊教育資源</span>
               </div>
               <h2 class="text-3xl sm:text-4xl md:text-5xl font-black text-teal-950 tracking-tight leading-tight">
                 ${info.portalTitle}
@@ -596,11 +602,11 @@
                 </div>
               </button>
 
-              <button type="button" data-goto-tab="advocacy" data-goto-subtab="pbs" class="hero-jump-btn text-left p-5 rounded-2xl bg-white hover:bg-purple-50/60 border-2 border-purple-200 transition shadow-2xs group">
-                <div class="text-3xl mb-2 group-hover:scale-110 transition">📂</div>
-                <div class="font-black text-slate-900 text-sm sm:text-base">PBS 行為介入表件</div>
-                <div class="text-xs sm:text-sm text-purple-800 font-bold mt-1.5">
-                  ABCR 紀錄表與 8 份表件 →
+              <button type="button" data-goto-tab="specialTools" class="hero-jump-btn text-left p-5 rounded-2xl bg-white hover:bg-orange-50/60 border-2 border-orange-200 transition shadow-2xs group">
+                <div class="text-3xl mb-2 group-hover:scale-110 transition">🧰</div>
+                <div class="font-black text-slate-900 text-sm sm:text-base">特教工具箱</div>
+                <div class="text-xs sm:text-sm text-orange-800 font-bold mt-1.5">
+                  校內專用系統整合 →
                 </div>
               </button>
             </div>
@@ -762,6 +768,138 @@
       document.body.appendChild(script);
     }
 
+    // 🌟 特教工具箱渲染（暖橘色系蜜桃調 + 米克師乾淨卡片風格）
+    function renderSpecialToolsView() {
+      if (!isSpecialToolsUnlocked) {
+        return `
+          <div class="p-8 max-w-md mx-auto space-y-6 text-center my-12 bg-white border-2 border-orange-200/90 rounded-3xl shadow-lg">
+            <div class="w-16 h-16 rounded-3xl bg-gradient-to-br from-amber-100 to-orange-100 text-orange-600 text-3xl flex items-center justify-center mx-auto shadow-xs border border-orange-200">
+              🧰
+            </div>
+            <div>
+              <h2 class="text-xl font-black text-slate-800">特教工具箱</h2>
+              <p class="text-xs text-slate-500 mt-1.5 leading-relaxed">此專區整合校內特教老師專用工具與系統，請輸入專屬密碼解鎖。</p>
+            </div>
+            <div class="space-y-3.5">
+              <input id="specialToolsPwdInput" type="password" placeholder="請輸入特教專屬密碼"
+                class="w-full text-center text-lg py-2.5 border-2 border-orange-200 rounded-2xl focus:border-orange-500 focus:outline-none bg-orange-50/20" />
+              <p id="specialToolsPwdError" class="text-xs text-rose-600 font-bold min-h-[1.2rem]"></p>
+              <button type="button" id="btnSubmitSpecialToolsLogin"
+                class="w-full py-3 rounded-2xl bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-600 hover:to-orange-600 text-white font-black text-xs sm:text-sm shadow-md transition transform hover:-translate-y-0.5">
+                驗證並解鎖工具箱
+              </button>
+            </div>
+          </div>
+        `;
+      }
+
+      // 解鎖後：單一乾淨大網格（米克師卡片美學）
+      return `
+        <div class="bg-gradient-to-b from-orange-50/30 to-white border-2 border-orange-100 rounded-3xl p-6 sm:p-10 space-y-8 w-full shadow-sm">
+          
+          <!-- 頂部標題與說明 -->
+          <div class="flex flex-wrap items-center justify-between gap-4 border-b border-orange-100 pb-5">
+            <div class="flex items-center gap-3.5">
+              <div class="w-12 h-12 rounded-2xl bg-gradient-to-br from-amber-100 to-orange-100 border border-orange-200 text-orange-600 flex items-center justify-center text-2xl shadow-2xs">
+                🧰
+              </div>
+              <div>
+                <div class="flex items-center gap-2">
+                  <h2 class="text-xl sm:text-2xl font-black text-slate-900 tracking-tight">特教工具箱</h2>
+                  <span class="text-xs font-bold px-2.5 py-0.5 rounded-full bg-orange-100 text-orange-800 border border-orange-200">
+                    專用整合
+                  </span>
+                </div>
+                <p class="text-xs sm:text-sm text-slate-500 mt-0.5">運用專業工具與自動化輔助，提升特教教學與行政效率。</p>
+              </div>
+            </div>
+            <button type="button" id="btnLockSpecialTools"
+              class="px-4 py-2 rounded-xl bg-white hover:bg-orange-50 border border-orange-200 text-slate-600 font-bold text-xs transition flex items-center gap-1.5 shadow-2xs">
+              <span>🔒</span>
+              <span>重新上鎖</span>
+            </button>
+          </div>
+
+          <!-- 米克師風格卡片網格 -->
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+            ${specialToolsData.map(tool => `
+              <a href="${tool.url}" target="_blank" rel="noopener noreferrer"
+                class="group relative bg-white border border-slate-200/90 hover:border-orange-300 rounded-3xl p-6 transition-all duration-200 hover:-translate-y-1 hover:shadow-xl hover:shadow-orange-500/10 flex flex-col justify-between gap-4">
+                
+                ${tool.badge ? `
+                  <span class="absolute -top-2.5 left-6 px-2.5 py-0.5 rounded-full text-[11px] font-black bg-gradient-to-r from-orange-500 to-amber-500 text-white shadow-xs">
+                    ${tool.badge}
+                  </span>
+                ` : ''}
+
+                <div class="space-y-3.5">
+                  <div class="flex items-start justify-between gap-2">
+                    <!-- 左上方塊圖示 -->
+                    <div class="w-12 h-12 rounded-2xl bg-amber-50 border border-amber-200/70 text-orange-600 flex items-center justify-center text-2xl group-hover:scale-105 transition shrink-0">
+                      ${tool.icon || '🛠️'}
+                    </div>
+                    <!-- 右上標籤 -->
+                    ${tool.tag ? `
+                      <span class="text-[11px] font-bold px-3 py-1 rounded-full bg-slate-50 group-hover:bg-orange-50 text-slate-600 group-hover:text-orange-800 border border-slate-200 group-hover:border-orange-200 transition">
+                        ${tool.tag}
+                      </span>
+                    ` : ''}
+                  </div>
+
+                  <!-- 標題與簡介 -->
+                  <div class="space-y-1.5">
+                    <h3 class="font-black text-slate-900 text-base group-hover:text-orange-600 transition tracking-tight">
+                      ${tool.title}
+                    </h3>
+                    <p class="text-xs sm:text-sm text-slate-500 leading-relaxed line-clamp-2">
+                      ${tool.desc}
+                    </p>
+                  </div>
+                </div>
+
+                <!-- 底部箭頭暗示 -->
+                <div class="pt-2 border-t border-slate-100 flex items-center justify-between text-xs font-bold text-orange-600 group-hover:text-orange-700">
+                  <span>開啟系統</span>
+                  <span class="transform group-hover:translate-x-1 transition">↗</span>
+                </div>
+
+              </a>
+            `).join('')}
+          </div>
+
+        </div>
+      `;
+    }
+
+    // 🌟 特教工具箱後端驗證（安全送往 GAS）
+    function fetchSpecialTools(password) {
+      showToast("正在驗證特教工具箱密碼...", "⏳");
+      const callbackName = "specialToolsCallback_" + Date.now();
+
+      window[callbackName] = function(result) {
+        delete window[callbackName];
+        if (script.parentNode) script.parentNode.removeChild(script);
+
+        if (result.success) {
+          specialToolsData = result.tools;
+          isSpecialToolsUnlocked = true;
+          renderMainViewport();
+          showToast("解鎖成功，已載入特教工具箱！", "🎉");
+        } else {
+          const errEl = document.getElementById("specialToolsPwdError");
+          if (errEl) errEl.textContent = result.message || "密碼錯誤，請重新輸入。";
+          showToast(result.message || "密碼錯誤", "❌");
+        }
+      };
+
+      const script = document.createElement("script");
+      script.src = `${GAS_WEB_APP_URL}?action=verifySpecialTools&password=${encodeURIComponent(password)}&callback=${callbackName}`;
+      script.onerror = function() {
+        showToast("後端連線異常，請確認部署版本", "⚠️");
+      };
+      document.body.appendChild(script);
+    }
+
     function openLegalModal(criteriaId) {
       const crit = SITE_CONFIG.referralZone.criteriaCategories.find(c => c.id === criteriaId);
       if (!crit) return;
@@ -780,8 +918,6 @@
       return `
         <div class="w-full space-y-6">
           <section class="warm-card p-6 sm:p-8 space-y-6 w-full">
-            
-            <!-- 專區頂部標題與說明手冊 -->
             <div class="flex flex-wrap items-center justify-between gap-4 border-b border-teal-100 pb-4">
               <div class="flex items-center gap-3">
                 <span class="w-12 h-12 rounded-2xl bg-amber-100 border border-amber-300 flex items-center justify-center text-2xl">📋</span>
@@ -795,7 +931,6 @@
               </a>
             </div>
 
-            <!-- 專區核心：雙頁籤切換控制鈕 -->
             <div class="flex flex-wrap gap-2.5 border-b border-teal-100 pb-4">
               <button type="button" data-referral-subtab="quick"
                 class="referral-subtab-btn flex items-center gap-2 px-5 py-3 rounded-2xl font-black text-xs sm:text-sm border-2 transition ${
@@ -817,10 +952,8 @@
               </button>
             </div>
 
-            <!-- 頁籤一：快速提報與表件下載 -->
             ${activeReferralSubtab === "quick" ? `
               <div class="space-y-6">
-                <!-- 超醒目提報大卡片 -->
                 <div class="bg-gradient-to-r from-amber-50 via-orange-50/60 to-amber-100/70 border-3 border-amber-400 rounded-3xl p-6 sm:p-8 flex flex-col md:flex-row items-start md:items-center justify-between gap-6 shadow-lg relative overflow-hidden">
                   <div class="flex items-start sm:items-center gap-4 z-10">
                     <div class="w-16 h-16 rounded-2xl bg-amber-500 text-white flex items-center justify-center text-3xl shadow-md shrink-0">
@@ -848,7 +981,6 @@
                   </div>
                 </div>
 
-                <!-- 四大障別卡片 -->
                 <div class="space-y-3 pt-2">
                   <div class="flex items-center justify-between">
                     <h3 class="text-sm sm:text-base font-black text-slate-900 flex items-center gap-2">
@@ -894,10 +1026,8 @@
               </div>
             ` : ''}
 
-            <!-- 頁籤二：課堂觀察與初篩重點 -->
             ${activeReferralSubtab === "criteria" ? `
               <div class="space-y-6">
-                <!-- 障別切換按鈕 -->
                 <div class="flex flex-wrap items-center justify-between gap-3">
                   <div class="flex flex-wrap gap-2">
                     ${ref.criteriaCategories.map(cat => {
@@ -922,7 +1052,6 @@
                   </button>
                 </div>
 
-                <!-- 導師課堂觀察重點面向 -->
                 <div class="warm-card p-6 border-2 border-teal-100 space-y-4">
                   <div class="flex items-center justify-between border-b border-teal-100 pb-3">
                     <div class="flex items-center gap-2">
@@ -947,7 +1076,6 @@
                     `).join("")}
                   </div>
 
-                  <!-- 排他因素與介入佐證 -->
                   <div class="grid grid-cols-1 lg:grid-cols-2 gap-4 pt-2">
                     <div class="bg-rose-50/60 border border-rose-200 rounded-2xl p-4 space-y-2">
                       <div class="text-xs font-black text-rose-900 flex items-center gap-1.5">
@@ -1362,7 +1490,6 @@
         });
       });
 
-      // 快速提報卡片上的法規彈窗按鈕
       vp.querySelectorAll(".btn-quick-legal").forEach(btn => {
         btn.addEventListener("click", () => {
           const critId = btn.getAttribute("data-crit-id");
@@ -1370,7 +1497,6 @@
         });
       });
 
-      // 初篩重點頁的查看法規按鈕
       const btnOpenLegal = document.getElementById("btnOpenLegalModal");
       if (btnOpenLegal) {
         btnOpenLegal.addEventListener("click", () => {
@@ -1378,7 +1504,6 @@
         });
       }
 
-      // 初篩重點頁的障別切換按鈕
       vp.querySelectorAll(".crit-tab-btn").forEach(btn => {
         btn.addEventListener("click", () => {
           activeCriteriaId = btn.getAttribute("data-crit-id");
@@ -1415,6 +1540,35 @@
           executeDeleteBooking(sheet, row, date, slot);
         });
       });
+
+      // 🌟 特教工具箱專屬事件
+      const btnSubmitSpecialTools = document.getElementById("btnSubmitSpecialToolsLogin");
+      const specialToolsInput = document.getElementById("specialToolsPwdInput");
+      if (btnSubmitSpecialTools && specialToolsInput) {
+        const doSpecialToolsLogin = () => {
+          const val = specialToolsInput.value.trim();
+          if (!val) {
+            document.getElementById("specialToolsPwdError").textContent = "請輸入特教專屬密碼。";
+            return;
+          }
+          document.getElementById("specialToolsPwdError").textContent = "";
+          fetchSpecialTools(val);
+        };
+        btnSubmitSpecialTools.addEventListener("click", doSpecialToolsLogin);
+        specialToolsInput.addEventListener("keydown", e => {
+          if (e.key === "Enter") doSpecialToolsLogin();
+        });
+      }
+
+      const btnLockSpecialTools = document.getElementById("btnLockSpecialTools");
+      if (btnLockSpecialTools) {
+        btnLockSpecialTools.addEventListener("click", () => {
+          isSpecialToolsUnlocked = false;
+          specialToolsData = [];
+          renderMainViewport();
+          showToast("已將特教工具箱重新上鎖", "🔒");
+        });
+      }
 
       vp.querySelectorAll(".adv-subtab-btn").forEach(btn => {
         btn.addEventListener("click", () => {
@@ -1453,6 +1607,8 @@
         vp.innerHTML = renderCommunicationView();
       } else if (activeTab === "links") {
         vp.innerHTML = renderLinksView();
+      } else if (activeTab === "specialTools") {
+        vp.innerHTML = renderSpecialToolsView(); // 🌟 渲染特教工具箱分頁
       }
       bindViewportEvents();
     }
