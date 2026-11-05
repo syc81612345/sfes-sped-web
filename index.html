@@ -227,7 +227,7 @@
   </div>
 
   <script>
-    const GAS_WEB_APP_URL = "https://script.google.com/macros/s/AKfycbzgIGADb1_JA_4xuPEX9mBgncD7UNbZ9NoJ-EQDiDCjlLYJTOW554efH3r3ihA24F2DLw/exec";
+    const GAS_WEB_APP_URL = "https://script.google.com/macros/s/AKfycbwuhgbzXBcKu_RwaQD1hznc7z5OoyMmWdJDCtvRx-qXGQaGtVr1gWfkL5EAhdgyA_PUWA/exec";
     const REPORT_SYSTEM_URL = "https://kitty0510-code.github.io/special-education-report/app.html#";
 
     const SITE_CONFIG = {
@@ -477,6 +477,7 @@
     // 🔒 特教工具箱解鎖狀態與後端資料
     let isSpecialToolsUnlocked = false;
     let specialToolsData = [];
+    let openDrawersState = {}; // 記憶各個抽屜目前是展開還是收合
 
     function showToast(msg, icon = "✨") {
       const box = document.getElementById("toastBox");
@@ -702,10 +703,8 @@
       `).join('');
     }
 
-    // 🌟 透過動態 script 標籤 (JSONP) 讀取預約紀錄，免受 CORS 限制
     function fetchIepBookings(password) {
       showToast("正在讀取試算表預約清單...", "⏳");
-      
       const callbackName = "iepCallback_" + Date.now();
       window[callbackName] = function(result) {
         delete window[callbackName];
@@ -730,7 +729,6 @@
       document.body.appendChild(script);
     }
 
-    // 🌟 透過 JSONP 模式刪除預約並釋出時段
     function executeDeleteBooking(sheetName, rowNumber, date, slot) {
       if (!confirm(`確定要刪除「${date} (${slot})」這筆會議預約嗎？\n刪除後該時段將立即開放重新預約。`)) return;
 
@@ -768,7 +766,49 @@
       document.body.appendChild(script);
     }
 
-    // 🌟 特教工具箱渲染（暖橘色系蜜桃調 + 米克師乾淨卡片風格）
+    // 🌟 卡片渲染輔助函式（米克師風格卡片）
+    function renderToolCardHtml(tool) {
+      return `
+        <a href="${tool.url}" target="_blank" rel="noopener noreferrer"
+          class="group relative bg-white border border-slate-200/90 hover:border-orange-300 rounded-3xl p-6 transition-all duration-200 hover:-translate-y-1 hover:shadow-xl hover:shadow-orange-500/10 flex flex-col justify-between gap-4">
+          
+          ${tool.badge ? `
+            <span class="absolute -top-2.5 left-6 px-2.5 py-0.5 rounded-full text-[11px] font-black bg-gradient-to-r from-orange-500 to-amber-500 text-white shadow-xs">
+              ${tool.badge}
+            </span>
+          ` : ''}
+
+          <div class="space-y-3.5">
+            <div class="flex items-start justify-between gap-2">
+              <div class="w-12 h-12 rounded-2xl bg-amber-50 border border-amber-200/70 text-orange-600 flex items-center justify-center text-2xl group-hover:scale-105 transition shrink-0">
+                ${tool.icon || '🛠️'}
+              </div>
+              ${tool.tag ? `
+                <span class="text-[11px] font-bold px-3 py-1 rounded-full bg-slate-50 group-hover:bg-orange-50 text-slate-600 group-hover:text-orange-800 border border-slate-200 group-hover:border-orange-200 transition">
+                  ${tool.tag}
+                </span>
+              ` : ''}
+            </div>
+
+            <div class="space-y-1.5">
+              <h3 class="font-black text-slate-900 text-base group-hover:text-orange-600 transition tracking-tight">
+                ${tool.title}
+              </h3>
+              <p class="text-xs sm:text-sm text-slate-500 leading-relaxed line-clamp-2">
+                ${tool.desc}
+              </p>
+            </div>
+          </div>
+
+          <div class="pt-2 border-t border-slate-100 flex items-center justify-between text-xs font-bold text-orange-600 group-hover:text-orange-700">
+            <span>開啟系統</span>
+            <span class="transform group-hover:translate-x-1 transition">↗</span>
+          </div>
+        </a>
+      `;
+    }
+
+    // 🌟 全自動歸納特教工具箱（自動依 category 分類，自動生出抽屜）
     function renderSpecialToolsView() {
       if (!isSpecialToolsUnlocked) {
         return `
@@ -793,7 +833,23 @@
         `;
       }
 
-      // 解鎖後：單一乾淨大網格（米克師卡片美學）
+      // 1. 自動篩選主要一般工具 (category === 'general' 或未設定者)
+      const generalTools = specialToolsData.filter(t => !t.category || t.category === "general");
+
+      // 2. 自動抓出所有自訂抽屜分類 (排除 general)
+      const otherCategories = Array.from(new Set(
+        specialToolsData
+          .map(t => t.category)
+          .filter(c => c && c !== "general")
+      ));
+
+      // 分類對應的預設圖示與中文名稱字典
+      const categoryMeta = {
+        "finance": { name: "經費相關工具", icon: "💰", subtitle: "特教助理人員鐘點費核銷、印領清冊自動產生" },
+        "pe": { name: "適應體育專區", icon: "⚾", subtitle: "適性體育賽事、運動輔具與選手培訓表件" },
+        "assistive": { name: "輔具與無障礙", icon: "♿", subtitle: "學生學習輔具評估、申請與借用維護" }
+      };
+
       return `
         <div class="bg-gradient-to-b from-orange-50/30 to-white border-2 border-orange-100 rounded-3xl p-6 sm:p-10 space-y-8 w-full shadow-sm">
           
@@ -820,58 +876,61 @@
             </button>
           </div>
 
-          <!-- 米克師風格卡片網格 -->
-          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">           
-              ${specialToolsData.map(tool => `
-              <a href="${tool.url}" target="_blank" rel="noopener noreferrer"
-                class="group relative bg-white border border-slate-200/90 hover:border-orange-300 rounded-3xl p-6 transition-all duration-200 hover:-translate-y-1 hover:shadow-xl hover:shadow-orange-500/10 flex flex-col justify-between gap-4">
-                
-                ${tool.badge ? `
-                  <span class="absolute -top-2.5 left-6 px-2.5 py-0.5 rounded-full text-[11px] font-black bg-gradient-to-r from-orange-500 to-amber-500 text-white shadow-xs">
-                    ${tool.badge}
-                  </span>
-                ` : ''}
+          <!-- 1. 一般教學與行政核心工具（一列 4 欄網格） -->
+          ${generalTools.length > 0 ? `
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+              ${generalTools.map(tool => renderToolCardHtml(tool)).join('')}
+            </div>
+          ` : ''}
 
-                <div class="space-y-3.5">
-                  <div class="flex items-start justify-between gap-2">
-                    <!-- 左上方塊圖示 -->
-                    <div class="w-12 h-12 rounded-2xl bg-amber-50 border border-amber-200/70 text-orange-600 flex items-center justify-center text-2xl group-hover:scale-105 transition shrink-0">
-                      ${tool.icon || '🛠️'}
-                    </div>
-                    <!-- 右上標籤 -->
-                    ${tool.tag ? `
-                      <span class="text-[11px] font-bold px-3 py-1 rounded-full bg-slate-50 group-hover:bg-orange-50 text-slate-600 group-hover:text-orange-800 border border-slate-200 group-hover:border-orange-200 transition">
-                        ${tool.tag}
+          <!-- 2. 🌟 動態分類折疊抽屜群（GAS 傳來什麼分類，就自動長出什麼抽屜） -->
+          <div class="space-y-4">
+            ${otherCategories.map(catKey => {
+              const meta = categoryMeta[catKey] || { name: catKey, icon: "📁", subtitle: `${catKey} 專屬相關工具` };
+              const catTools = specialToolsData.filter(t => t.category === catKey);
+              const isOpen = !!openDrawersState[catKey];
+
+              return `
+                <div class="border-2 border-amber-200 bg-amber-50/30 rounded-3xl overflow-hidden transition shadow-xs">
+                  <!-- 抽屜點擊標題列 -->
+                  <button type="button" data-drawer-cat="${catKey}"
+                    class="drawer-toggle-btn w-full px-6 py-4 flex items-center justify-between bg-gradient-to-r from-amber-100/60 via-orange-50/50 to-white hover:bg-amber-100/80 transition text-left cursor-pointer">
+                    <div class="flex items-center gap-3">
+                      <span class="w-9 h-9 rounded-xl bg-amber-200/70 text-amber-900 flex items-center justify-center text-lg shadow-2xs">
+                        ${meta.icon}
                       </span>
-                    ` : ''}
-                  </div>
+                      <div>
+                        <div class="flex items-center gap-2">
+                          <h3 class="font-black text-slate-900 text-sm sm:text-base">${meta.name}</h3>
+                          <span class="text-[11px] font-bold px-2 py-0.5 rounded-full bg-amber-200 text-amber-900">
+                            ${catTools.length} 個工具
+                          </span>
+                        </div>
+                        <p class="text-xs text-slate-500 mt-0.5">${meta.subtitle}</p>
+                      </div>
+                    </div>
+                    
+                    <div class="flex items-center gap-2 text-amber-900 font-bold text-xs">
+                      <span class="drawer-text">${isOpen ? "收合工具" : "展開工具"}</span>
+                      <span class="drawer-arrow transform transition duration-200 ${isOpen ? "rotate-180" : ""}">▼</span>
+                    </div>
+                  </button>
 
-                  <!-- 標題與簡介 -->
-                  <div class="space-y-1.5">
-                    <h3 class="font-black text-slate-900 text-base group-hover:text-orange-600 transition tracking-tight">
-                      ${tool.title}
-                    </h3>
-                    <p class="text-xs sm:text-sm text-slate-500 leading-relaxed line-clamp-2">
-                      ${tool.desc}
-                    </p>
+                  <!-- 抽屜內容容器 -->
+                  <div id="drawer-container-${catKey}" class="${isOpen ? "block" : "hidden"} p-6 border-t border-amber-200 bg-white">
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                      ${catTools.map(tool => renderToolCardHtml(tool)).join('')}
+                    </div>
                   </div>
                 </div>
-
-                <!-- 底部箭頭暗示 -->
-                <div class="pt-2 border-t border-slate-100 flex items-center justify-between text-xs font-bold text-orange-600 group-hover:text-orange-700">
-                  <span>開啟系統</span>
-                  <span class="transform group-hover:translate-x-1 transition">↗</span>
-                </div>
-
-              </a>
-            `).join('')}
+              `;
+            }).join('')}
           </div>
 
         </div>
       `;
     }
 
-    // 🌟 特教工具箱後端驗證（安全送往 GAS）
     function fetchSpecialTools(password) {
       showToast("正在驗證特教工具箱密碼...", "⏳");
       const callbackName = "specialToolsCallback_" + Date.now();
@@ -1541,7 +1600,7 @@
         });
       });
 
-      // 🌟 特教工具箱專屬事件
+      // 🌟 特教工具箱登入事件
       const btnSubmitSpecialTools = document.getElementById("btnSubmitSpecialToolsLogin");
       const specialToolsInput = document.getElementById("specialToolsPwdInput");
       if (btnSubmitSpecialTools && specialToolsInput) {
@@ -1569,6 +1628,31 @@
           showToast("已將特教工具箱重新上鎖", "🔒");
         });
       }
+
+      // 🌟 動態折疊抽屜群監聽（支援任意數量的分類抽屜）
+      vp.querySelectorAll(".drawer-toggle-btn").forEach(btn => {
+        btn.addEventListener("click", () => {
+          const cat = btn.getAttribute("data-drawer-cat");
+          const container = document.getElementById(`drawer-container-${cat}`);
+          const textEl = btn.querySelector(".drawer-text");
+          const arrowEl = btn.querySelector(".drawer-arrow");
+
+          if (!container) return;
+
+          const isCurrentlyOpen = !container.classList.contains("hidden");
+          if (isCurrentlyOpen) {
+            container.classList.add("hidden");
+            if (textEl) textEl.textContent = "展開工具";
+            if (arrowEl) arrowEl.classList.remove("rotate-180");
+            openDrawersState[cat] = false;
+          } else {
+            container.classList.remove("hidden");
+            if (textEl) textEl.textContent = "收合工具";
+            if (arrowEl) arrowEl.classList.add("rotate-180");
+            openDrawersState[cat] = true;
+          }
+        });
+      });
 
       vp.querySelectorAll(".adv-subtab-btn").forEach(btn => {
         btn.addEventListener("click", () => {
@@ -1608,7 +1692,7 @@
       } else if (activeTab === "links") {
         vp.innerHTML = renderLinksView();
       } else if (activeTab === "specialTools") {
-        vp.innerHTML = renderSpecialToolsView(); // 🌟 渲染特教工具箱分頁
+        vp.innerHTML = renderSpecialToolsView();
       }
       bindViewportEvents();
     }
