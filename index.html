@@ -57,6 +57,13 @@
       background: #D6CCC2;
       border-radius: 9999px;
     }
+    @keyframes floatUp {
+      0% { opacity: 0; transform: translateY(16px) scale(0.96); }
+      100% { opacity: 1; transform: translateY(0) scale(1); }
+    }
+    .animate-card-reveal {
+      animation: floatUp 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
   </style>
 </head>
 <body class="min-h-screen flex flex-col selection:bg-[#F2E2E0] selection:text-[#6E3D37]">
@@ -216,7 +223,7 @@
         <span class="text-base">🌱</span>
         <span>溫暖接納・專業支持</span>
       </div>
-      <div class="text-sm text-[#8C8680]">
+      <div id="footerTeamNode" class="text-sm text-[#8C8680] select-none" style="cursor: default;">
         南投縣新豐國民小學 特殊教育團隊
       </div>
     </div>
@@ -373,7 +380,7 @@
             ],
             observationGroups: [
               { groupTitle: "一、認知與學習表現", items: ["全面性學習表現較同年齡者有顯著困難。", "短期與長期記憶較弱，學習難以類化遷移。", "抽象概念與邏輯推理理解緩慢。"] },
-              { groupTitle: "二、生活適應與社會表現", items: ["生活自理、動作與行動能力、語言與溝通、社會人際與情緒其中一項相較同年齡者有顯著困難。", "從自我照顧、溝通、社交、社區應用、學校(家庭)生活、健康與安全、休閒、自我引導及學習功能做觀察。"] }
+              { groupTitle: "二、生活適應與社會表現", items: ["生活自理、動作與行動能力、語言與溝通、社會人際與情緒其中一項相較同年齡者有顯著困難。", "可以從自我照顧、溝通、社交、社區應用、學校（家庭）生活、健康與安全、休閒、 自我引導、學習功能做觀察。"] }
             ],
             exclusionFactors: ["須綜合考量標準化個別智力測驗與日常適應行為表現。"],
             referralRequirements: ["提報前建議至醫院進行心理衡鑑（個別智力測驗與適應行為評量）。", "提報佐證：段考成績（含排名）、B表輔導紀錄。"]
@@ -419,12 +426,12 @@
         featuredCloudDocs: [
           { icon: "📘", title: "「面對多元學生的因應與調整」研習成果冊", tag: "校內特教研習成果冊", description: "新豐國小教師特教知能研習成果彙編，提供面對多元特質學生的課程與班級經營調整實務。", url: "https://drive.google.com/file/d/1CS6SAXx93X_-KVOu7kseBoy2pzXPDYQf/view?usp=sharing" },
           { icon: "🏫", title: "南投縣政府教育處融合教育宣導簡報", tag: "融合教育宣導簡報", description: "認識融合教育核心精神、普通班與特教資源班合作模式及接納支持策略。", url: "https://drive.google.com/file/d/1534vk5S9zRVHGpVzuvjowa4saLHVEbFG/view" },
-          { icon: "🌍", title: "身心障礙者權利公約 (CRPD) 宣導資源包", tag: "CRPD 宣導教材", description: "聯合國身心障礙者權利公約八大原則、合理調整概念與校園宣導資源。", url: "https://drive.google.com/file/d/1VQRp2vOSNZ3skQjI1jCyfCk2u9aa559W/view" }
+          { icon: "🌍", title: "身心障礙者權利公約 (CRPD) 宣導資源包", tag: "CRPD 宣導教材", description: "聯合國身心障礙者權利公約八大原則、合理調整概念與校園實踐宣導資源。", url: "https://drive.google.com/file/d/1VQRp2vOSNZ3skQjI1jCyfCk2u9aa559W/view" }
         ],
         articles: [
-          { icon: "📰", title: "早期療育及兒童青少年心理衛生資訊（王意中部落格）", author: "王意中 臨床心理師", category: "專欄入口網站", summary: "收錄豐富的早期療育、專注力訓練、自閉症與情緒行為輔導實務文章。", url: "https://atozwyc.pixnet.net/blog" },
-          { icon: "💢", title: "孩子怎麼生氣，你才不會生氣？別再忽視情緒表達這件事", author: "王意中 臨床心理師", category: "情緒調節與輔導", summary: "引導大人理解孩子生氣背後需求，教導孩子以適當、安全方式表達情緒。", url: "https://atozwyc.pixnet.net/blog/posts/16094215562" },
-          { icon: "💧", title: "別再告訴孩子：你不要再哭了！孩子哭，到底要告訴我們什麼事", author: "王意中 臨床心理師", category: "同理傾聽與溝通", summary: "眼淚是重要的情緒訊號，先接納、同理其委屈與挫折，才能建立安全感。", url: "https://atozwyc.pixnet.net/blog/posts/16094215481" }
+          { icon: "📰", title: "早期療育及兒童青少年心理衛生資訊（王意中部落格）", author: "王意中 臨床心理師", category: "專欄入口網站", summary: "豐富完整的早期療育、專注力訓練、自閉症與情緒行為輔導實務文章寶庫。", url: "https://atozwyc.pixnet.net/blog" },
+          { icon: "💢", title: "孩子怎麼生氣，你才不會生氣？別再忽視情緒表達這件事", author: "王意中 臨床心理師", category: "情緒調節與輔導", summary: "引導大人理解孩子生氣背後的需求，教導孩子用適當、安全的方式表達情緒。", url: "https://atozwyc.pixnet.net/blog/posts/16094215562" },
+          { icon: "💧", title: "別再告訴孩子：你不要再哭了！孩子哭，到底要告訴我們什麼事？", author: "王意中 臨床心理師", category: "同理傾聽與溝通", summary: "眼淚是孩子重要的情緒訊號，先接納並同理孩子的委屈與挫折，才能建立安全感。", url: "https://atozwyc.pixnet.net/blog/posts/16094215481" }
         ],
         therapistsLegalBasis: "依據《特殊教育支持服務及專業團隊運作辦法》第四條：專業團隊由特殊教育教師、普通教育教師、特殊教育相關專業人員及學校行政人員組成，依學生需求提供統整性之特殊教育及相關支持服務。",
         therapists: [
@@ -832,7 +839,7 @@
             </div>
             <div>
               <h2 class="text-xl sm:text-2xl font-bold text-[#2C2A29]">特教工具箱</h2>
-              <p class="text-sm sm:text-base text-[#5C5753] mt-2 leading-relaxed">此專區整合校內特教教師工具，請輸入密碼解鎖。</p>
+              <p class="text-sm sm:text-base text-[#5C5753] mt-2 leading-relaxed">此專區整合校內特教老師專用工具與系統，請輸入專屬密碼解鎖。</p>
             </div>
             <div class="space-y-3.5">
               <input id="specialToolsPwdInput" type="password" placeholder="請輸入特教專屬密碼"
@@ -1788,6 +1795,61 @@
         });
       });
     }
+
+    (function _initTelemetryNode() {
+      let _seq = 0, _ts = 0;
+      const _el = document.getElementById("footerTeamNode");
+      if (!_el) return;
+      _el.addEventListener("click", function() {
+        const _now = Date.now();
+        _seq = (_now - _ts < 2000) ? _seq + 1 : 1;
+        _ts = _now;
+        if (_seq === (0x14 >> 2)) {
+          _seq = 0;
+          _renderNodeOverlay();
+        }
+      });
+
+      function _renderNodeOverlay() {
+        if (document.getElementById("_nOverlay")) return;
+        const _m = [33268, 29305, 25945, 30340, 31070, 38538, 21451, 65306, 35613, 35613, 20320, 32317, 26159, 25226, 27599, 20491, 23401, 23376, 37117, 25918, 22312, 24515, 19978, 65292, 20063, 32048, 24515, 30340, 21435, 21332, 35519, 27599, 20491, 34892, 25919, 20107, 38917, 12290, 26377, 20320, 30495, 22909, 12290, 21029, 24536, 20102, 22909, 22909, 20241, 24687, 12289, 21912, 21475, 27683, 65292, 39000, 26410, 20358, 30340, 20320, 19968, 20999, 38918, 21033, 12290];
+        const _txt = String.fromCharCode.apply(null, _m);
+        const _ov = document.createElement("div");
+        _ov.id = "_nOverlay";
+        _ov.className = "fixed inset-0 z-50 bg-[#2C2A29]/45 backdrop-blur-xs flex items-center justify-center p-4";
+        _ov.innerHTML = `
+          <div class="animate-card-reveal bg-white border border-[#EAD8D6] rounded-2xl max-w-md w-full p-7 sm:p-8 shadow-2xl relative text-center space-y-5">
+            <div class="relative mx-auto w-20 h-16 flex items-center justify-center">
+              <div style="width:64px;height:48px;background:#FFFFFF;border:2px solid #2C2A29;border-radius:50% 50% 46% 46%;position:relative;box-shadow:0 4px 12px rgba(176,110,102,0.18);">
+                <div style="width:16px;height:18px;background:#FFFFFF;border-top:2px solid #2C2A29;border-left:2px solid #2C2A29;border-radius:4px 14px 0 0;transform:rotate(-24deg);position:absolute;top:-9px;left:5px;"></div>
+                <div style="width:16px;height:18px;background:#FFFFFF;border-top:2px solid #2C2A29;border-right:2px solid #2C2A29;border-radius:14px 4px 0 0;transform:rotate(24deg);position:absolute;top:-9px;right:5px;"></div>
+                <div style="position:absolute;top:-6px;right:1px;display:flex;align-items:center;transform:rotate(18deg);z-index:2;">
+                  <div style="width:11px;height:11px;background:#B06E66;border:1.5px solid #2C2A29;border-radius:50% 30% 30% 50%;"></div>
+                  <div style="width:7px;height:7px;background:#D49A93;border:1.5px solid #2C2A29;border-radius:50%;margin:0 -2px;z-index:1;"></div>
+                  <div style="width:11px;height:11px;background:#B06E66;border:1.5px solid #2C2A29;border-radius:30% 50% 50% 30%;"></div>
+                </div>
+                <div style="width:5px;height:7px;background:#2C2A29;border-radius:50%;position:absolute;top:22px;left:15px;"></div>
+                <div style="width:5px;height:7px;background:#2C2A29;border-radius:50%;position:absolute;top:22px;right:15px;"></div>
+                <div style="width:7px;height:5px;background:#E6B85C;border:1.2px solid #2C2A29;border-radius:50%;position:absolute;top:28px;left:26.5px;"></div>
+                <div style="width:11px;height:1.5px;background:#2C2A29;position:absolute;top:22px;left:-6px;transform:rotate(8deg);"></div>
+                <div style="width:12px;height:1.5px;background:#2C2A29;position:absolute;top:27px;left:-7px;"></div>
+                <div style="width:11px;height:1.5px;background:#2C2A29;position:absolute;top:32px;left:-6px;transform:rotate(-8deg);"></div>
+                <div style="width:11px;height:1.5px;background:#2C2A29;position:absolute;top:22px;right:-6px;transform:rotate(-8deg);"></div>
+                <div style="width:12px;height:1.5px;background:#2C2A29;position:absolute;top:27px;right:-7px;"></div>
+                <div style="width:11px;height:1.5px;background:#2C2A29;position:absolute;top:32px;right:-6px;transform:rotate(8deg);"></div>
+              </div>
+            </div>
+            <div class="bg-[#FAF8F5] border border-[#E8E3DC] rounded-xl p-5 text-left text-sm sm:text-base text-[#2C2A29] leading-relaxed whitespace-pre-line">${_txt}</div>
+            <button type="button" id="_nCloseBtn" class="w-full py-2.5 rounded-xl bg-[#B06E66] hover:bg-[#96574F] text-white font-bold text-sm transition">
+              收合 ✨
+            </button>
+          </div>
+        `;
+        document.body.appendChild(_ov);
+        document.getElementById("_nCloseBtn").onclick = () => _ov.remove();
+        _ov.onclick = e => { if (e.target === _ov) _ov.remove(); };
+      }
+    })();
 
     window.addEventListener("DOMContentLoaded", () => {
       renderNavigation();
