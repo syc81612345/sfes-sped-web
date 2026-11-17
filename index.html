@@ -8,94 +8,97 @@
   <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com/3.4.17"></script>
   
-  <!-- Google Fonts: 芫荽字體 (Iansui) & Inter -->
+  <!-- Google Fonts: 芫荽字體 (Iansui) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Iansui&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Iansui&display=swap" rel="stylesheet">
   <style>
     :root {
-      --primary: #00897b;
-      --primary-dark: #0f766e;
-      --bg-warm: #FAFDFC;
-      --mint-bg: #f0fdfa;
-      --mint-border: #ccfbf1;
+      --primary: #B06E66;
+      --primary-dark: #96574F;
+      --primary-soft: #F9F2F1;
+      --bg-cream: #FAF8F5;
+      --oat-bg: #F3EFEA;
+      --border-warm: #E8E3DC;
+      --text-main: #2C2A29;
+      --text-sub: #6E6A66;
     }
     html, body {
       margin: 0;
       padding: 0;
       width: 100%;
       min-height: 100%;
-      background-color: var(--bg-warm);
-      color: #1E293B;
-      font-family: 'Iansui', 'Inter', 'Microsoft JhengHei', sans-serif;
+      background-color: var(--bg-cream);
+      color: var(--text-main);
+      font-family: 'Iansui', 'Microsoft JhengHei', sans-serif;
       -webkit-text-size-adjust: 100%;
     }
     .warm-card {
       background: #FFFFFF;
-      border: 2px solid #CCFBF1;
-      border-radius: 24px;
-      box-shadow: 0 8px 24px -4px rgba(0, 137, 123, 0.08);
+      border: 1px solid var(--border-warm);
+      border-radius: 16px;
+      box-shadow: 0 4px 20px -2px rgba(44, 42, 41, 0.04);
       transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
     }
     .warm-card-hover:hover {
       transform: translateY(-2px);
-      border-color: #5EEAD4;
-      box-shadow: 0 12px 28px -6px rgba(0, 137, 123, 0.15);
+      border-color: #D4C8BC;
+      box-shadow: 0 10px 26px -4px rgba(176, 110, 102, 0.10);
     }
     .custom-scrollbar::-webkit-scrollbar {
       width: 6px;
       height: 6px;
     }
     .custom-scrollbar::-webkit-scrollbar-track {
-      background: #F0FDFA;
+      background: #F3EFEA;
     }
     .custom-scrollbar::-webkit-scrollbar-thumb {
-      background: #99F6E4;
+      background: #D6CCC2;
       border-radius: 9999px;
     }
   </style>
 </head>
-<body class="min-h-screen flex flex-col selection:bg-teal-200 selection:text-teal-950">
+<body class="min-h-screen flex flex-col selection:bg-[#F2E2E0] selection:text-[#6E3D37]">
 
   <!-- Header -->
-  <header class="sticky top-0 z-40 bg-white/95 backdrop-blur border-b-2 border-teal-100 shadow-xs w-full">
-    <div class="w-full px-4 sm:px-8 py-3.5 flex flex-wrap items-center justify-between gap-3">
+  <header class="sticky top-0 z-40 bg-[#FAF8F5]/95 backdrop-blur border-b border-[#E8E3DC] w-full">
+    <div class="w-full px-4 sm:px-10 py-4 flex flex-wrap items-center justify-between gap-4">
       <!-- Brand Identity -->
-      <div class="flex items-center gap-3 cursor-pointer group" id="brandHomeTrigger">
-        <div class="w-12 h-12 rounded-2xl bg-gradient-to-br from-teal-500 to-emerald-600 flex items-center justify-center text-white text-2xl font-black shadow-sm group-hover:scale-105 transition">
+      <div class="flex items-center gap-3.5 cursor-pointer group" id="brandHomeTrigger">
+        <div class="w-11 h-11 rounded-full bg-[#B06E66] flex items-center justify-center text-white text-xl font-bold shadow-xs group-hover:bg-[#96574F] transition">
           🌱
         </div>
         <div>
-          <div class="flex items-center gap-2">
-            <h1 class="text-base sm:text-xl font-black text-teal-900 tracking-tight" id="headerSiteTitle">
+          <div class="flex items-center gap-2.5">
+            <h1 class="text-base sm:text-lg font-bold text-[#2C2A29] tracking-wide" id="headerSiteTitle">
               南投縣新豐國小特教資源網
             </h1>
-            <span class="hidden md:inline-block text-xs font-bold px-3 py-0.5 rounded-full bg-teal-50 text-teal-800 border border-teal-200">
+            <span class="hidden md:inline-block text-xs font-bold px-2.5 py-0.5 rounded-md bg-[#F9F2F1] text-[#7E4842] border border-[#EAD8D6]">
               溫馨支持・共融成長
             </span>
           </div>
-          <p class="text-xs text-slate-500 hidden sm:block">
-            校內鑑定提報 ┃ IEP 會議預約系統 ┃ 特教宣導與支持服務
+          <p class="text-xs text-[#7D7873] hidden sm:block mt-0.5 tracking-wide">
+            校內鑑定提報 ｜ IEP 會議預約系統 ｜ 特教宣導與支持服務
           </p>
         </div>
       </div>
 
       <!-- Search & Utility Controls -->
-      <div class="flex items-center gap-2 flex-1 sm:flex-initial justify-end">
-        <div class="relative w-full sm:w-48 md:w-64">
-          <span class="absolute left-3.5 top-1/2 -translate-y-1/2 text-teal-600 text-sm pointer-events-none">🔍</span>
+      <div class="flex items-center gap-2.5 flex-1 sm:flex-initial justify-end">
+        <div class="relative w-full sm:w-52 md:w-64">
+          <span class="absolute left-3.5 top-1/2 -translate-y-1/2 text-[#9E9892] text-xs pointer-events-none">🔍</span>
           <input
             id="globalSearchInput"
             type="search"
             placeholder="搜尋表單、辦法..."
-            class="w-full pl-10 pr-8 py-2 text-xs sm:text-sm rounded-full border-2 border-teal-100 bg-teal-50/50 text-slate-800 placeholder-slate-400 focus:bg-white focus:outline-none focus:border-teal-500 transition"
+            class="w-full pl-9 pr-8 py-2 text-xs sm:text-sm rounded-lg border border-[#E2DCD3] bg-white text-[#2C2A29] placeholder-[#A8A29C] focus:outline-none focus:border-[#B06E66] transition"
           />
-          <button id="clearSearchBtn" type="button" class="hidden absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600 text-xs">
+          <button id="clearSearchBtn" type="button" class="hidden absolute right-3 top-1/2 -translate-y-1/2 text-[#9E9892] hover:text-[#2C2A29] text-xs">
             ✕
           </button>
         </div>
 
-        <button id="btnCloudDirectory" type="button" class="shrink-0 flex items-center gap-1.5 px-3.5 py-2 rounded-full text-xs sm:text-sm font-bold bg-amber-50 hover:bg-amber-100 text-amber-900 border-2 border-amber-200 transition" title="全站雲端連結一覽">
+        <button id="btnCloudDirectory" type="button" class="shrink-0 flex items-center gap-1.5 px-4 py-2 rounded-lg text-xs sm:text-sm font-bold bg-[#F3EFEA] hover:bg-[#EAE3DA] text-[#4A4642] border border-[#E2DCD3] transition" title="全站雲端連結一覽">
           <span>📂</span>
           <span class="hidden md:inline">雲端總覽</span>
         </button>
@@ -103,24 +106,24 @@
     </div>
 
     <!-- Navigation Bar -->
-    <nav class="bg-teal-50/60 border-t border-teal-100 px-4 sm:px-8 py-2.5 w-full">
-      <div class="w-full flex items-center gap-2.5 overflow-x-auto custom-scrollbar" id="mainNavContainer">
+    <nav class="bg-[#F6F3EE]/80 border-t border-[#ECE7DF] px-4 sm:px-10 py-2.5 w-full">
+      <div class="w-full flex items-center gap-2 overflow-x-auto custom-scrollbar" id="mainNavContainer">
         <!-- Populated by JS -->
       </div>
     </nav>
   </header>
 
   <!-- Global Search Results Drawer -->
-  <section id="searchResultsSection" class="hidden w-full px-4 sm:px-8 pt-5">
-    <div class="warm-card p-6 border-amber-300 bg-amber-50/40 space-y-3">
-      <div class="flex items-center justify-between border-b border-amber-200 pb-3">
+  <section id="searchResultsSection" class="hidden w-full px-4 sm:px-10 pt-6">
+    <div class="warm-card p-6 border-[#DFC7C4] bg-[#F9F2F1]/60 space-y-3">
+      <div class="flex items-center justify-between border-b border-[#EAD8D6] pb-3">
         <div class="flex items-center gap-2">
-          <span class="text-xl">🔎</span>
-          <h2 class="font-black text-slate-800 text-sm sm:text-base">
-            全站快速搜尋結果：<span id="searchKeywordDisplay" class="text-teal-700"></span>
+          <span class="text-lg">🔎</span>
+          <h2 class="font-bold text-[#2C2A29] text-sm sm:text-base">
+            全站快速搜尋結果：<span id="searchKeywordDisplay" class="text-[#B06E66]"></span>
           </h2>
         </div>
-        <button id="closeSearchBtn" type="button" class="px-3.5 py-1.5 rounded-full text-xs font-bold bg-white hover:bg-slate-100 text-slate-700 border border-slate-200">
+        <button id="closeSearchBtn" type="button" class="px-3.5 py-1.5 rounded-lg text-xs font-bold bg-white hover:bg-[#F3EFEA] text-[#5C5753] border border-[#E2DCD3]">
           關閉 ✕
         </button>
       </div>
@@ -128,27 +131,27 @@
     </div>
   </section>
 
-  <!-- Main Viewport -->
-  <main class="flex-1 w-full px-4 sm:px-8 py-10 space-y-8" id="mainViewport">
+  <!-- Main Viewport (滿版寬度) -->
+  <main class="flex-1 w-full px-4 sm:px-10 py-8 flex flex-col" id="mainViewport">
     <!-- Populated by JS -->
   </main>
 
   <!-- IEP 管理員登入 Modal -->
-  <dialog id="iepAdminLoginDialog" class="p-0 rounded-3xl shadow-2xl backdrop:bg-slate-900/50 border-2 border-teal-200 max-w-sm w-full m-auto">
-    <div class="p-6 space-y-4 bg-white text-center">
-      <div class="w-12 h-12 rounded-2xl bg-teal-100 text-teal-800 text-2xl flex items-center justify-center mx-auto">🔐</div>
+  <dialog id="iepAdminLoginDialog" class="p-0 rounded-2xl shadow-2xl backdrop:bg-[#2C2A29]/40 border border-[#E8E3DC] max-w-sm w-full m-auto">
+    <div class="p-7 space-y-4 bg-white text-center">
+      <div class="w-11 h-11 rounded-xl bg-[#F9F2F1] text-[#B06E66] text-xl flex items-center justify-center mx-auto border border-[#EAD8D6]">🔐</div>
       <div>
-        <h3 class="text-lg font-black text-slate-900">IEP 預約管理驗證</h3>
-        <p class="text-xs text-slate-500 mt-1">請輸入密碼檢視並管理預約名單</p>
+        <h3 class="text-lg font-bold text-[#2C2A29]">IEP 預約管理驗證</h3>
+        <p class="text-xs text-[#7D7873] mt-1">請輸入密碼檢視並管理預約名單</p>
       </div>
       <input id="iepAdminPasswordInput" type="password" inputmode="numeric" maxlength="4" placeholder="••••"
-        class="w-36 text-center text-2xl tracking-[0.35em] py-2 border-2 border-teal-200 rounded-2xl focus:border-teal-500 focus:outline-none" />
-      <p id="iepAdminPasswordError" class="text-xs text-rose-600 font-bold min-h-[1.2rem]"></p>
-      <div class="flex items-center justify-center gap-3">
-        <button id="btnCancelIepAdminLogin" type="button" class="px-4 py-2 text-xs font-bold text-slate-500 hover:text-slate-800">
+        class="w-36 text-center text-2xl tracking-[0.35em] py-2 border border-[#D8D1C7] rounded-xl focus:border-[#B06E66] focus:outline-none bg-[#FAF8F5]" />
+      <p id="iepAdminPasswordError" class="text-xs text-[#B84A4A] font-bold min-h-[1.2rem]"></p>
+      <div class="flex items-center justify-center gap-3 pt-1">
+        <button id="btnCancelIepAdminLogin" type="button" class="px-4 py-2 text-xs font-bold text-[#7D7873] hover:text-[#2C2A29]">
           取消
         </button>
-        <button id="btnSubmitIepAdminLogin" type="button" class="px-5 py-2 rounded-xl bg-teal-600 hover:bg-teal-700 text-white font-black text-xs">
+        <button id="btnSubmitIepAdminLogin" type="button" class="px-5 py-2.5 rounded-lg bg-[#B06E66] hover:bg-[#96574F] text-white font-bold text-xs transition">
           驗證登入
         </button>
       </div>
@@ -156,30 +159,30 @@
   </dialog>
 
   <!-- 法規條文專用彈窗 (Modal) -->
-  <dialog id="legalModalDialog" class="p-0 rounded-3xl shadow-2xl backdrop:bg-slate-900/50 border-2 border-teal-200 max-w-2xl w-full m-auto">
-    <div class="p-6 sm:p-8 space-y-4 bg-white">
-      <div class="flex items-start justify-between border-b border-teal-100 pb-3">
+  <dialog id="legalModalDialog" class="p-0 rounded-2xl shadow-2xl backdrop:bg-[#2C2A29]/40 border border-[#E8E3DC] max-w-2xl w-full m-auto">
+    <div class="p-6 sm:p-8 space-y-5 bg-white">
+      <div class="flex items-start justify-between border-b border-[#ECE7DF] pb-4">
         <div class="flex items-center gap-3">
-          <span class="w-10 h-10 rounded-2xl bg-teal-100 text-teal-800 text-xl flex items-center justify-center" id="legalModalIcon">📜</span>
+          <span class="w-10 h-10 rounded-xl bg-[#F9F2F1] text-[#B06E66] border border-[#EAD8D6] text-xl flex items-center justify-center" id="legalModalIcon">📜</span>
           <div>
-            <span class="text-xs font-bold text-teal-700" id="legalModalArticle"></span>
-            <h3 class="text-lg sm:text-xl font-black text-slate-900" id="legalModalTitle"></h3>
+            <span class="text-xs font-bold text-[#B06E66]" id="legalModalArticle"></span>
+            <h3 class="text-lg sm:text-xl font-bold text-[#2C2A29] mt-0.5" id="legalModalTitle"></h3>
           </div>
         </div>
-        <button type="button" class="text-slate-400 hover:text-slate-600 text-sm font-bold px-2 py-1" onclick="document.getElementById('legalModalDialog').close()">✕</button>
+        <button type="button" class="text-[#9E9892] hover:text-[#2C2A29] text-sm font-bold px-2 py-1" onclick="document.getElementById('legalModalDialog').close()">✕</button>
       </div>
-      <div class="space-y-4 text-xs sm:text-sm text-slate-700 leading-relaxed max-h-[65vh] overflow-y-auto custom-scrollbar p-1">
-        <div class="bg-teal-50/50 p-4 rounded-2xl border border-teal-100">
-          <strong class="text-teal-950 font-bold block mb-1">【法定定義】</strong>
+      <div class="space-y-4 text-xs sm:text-sm text-[#4A4642] leading-relaxed max-h-[65vh] overflow-y-auto custom-scrollbar p-1">
+        <div class="bg-[#FAF8F5] p-4 rounded-xl border-l-4 border-[#B06E66]">
+          <strong class="text-[#2C2A29] font-bold block mb-1.5">【法定定義】</strong>
           <p id="legalModalDefinition"></p>
         </div>
-        <div class="bg-amber-50/50 p-4 rounded-2xl border border-amber-200">
-          <strong class="text-amber-950 font-bold block mb-1">【鑑定基準】</strong>
+        <div class="bg-[#F9F2F1]/70 p-4 rounded-xl border border-[#EAD8D6]">
+          <strong class="text-[#7E4842] font-bold block mb-1.5">【鑑定基準】</strong>
           <ul id="legalModalPoints" class="space-y-1.5 list-disc list-inside"></ul>
         </div>
       </div>
       <div class="pt-2">
-        <button type="button" class="w-full py-2.5 rounded-xl bg-teal-600 hover:bg-teal-700 text-white font-bold text-xs" onclick="document.getElementById('legalModalDialog').close()">
+        <button type="button" class="w-full py-2.5 rounded-lg bg-[#B06E66] hover:bg-[#96574F] text-white font-bold text-xs transition" onclick="document.getElementById('legalModalDialog').close()">
           已了解，關閉視窗
         </button>
       </div>
@@ -187,41 +190,39 @@
   </dialog>
 
   <!-- Cloud Directory Modal -->
-  <div id="cloudModal" class="fixed inset-0 z-50 hidden bg-slate-900/50 backdrop-blur-xs flex items-center justify-center p-4">
-    <div class="bg-white rounded-3xl max-w-3xl w-full max-h-[82vh] flex flex-col shadow-2xl border-2 border-teal-200 overflow-hidden">
-      <div class="px-6 py-4 bg-gradient-to-r from-teal-600 to-emerald-600 text-white flex items-center justify-between">
-        <div class="flex items-center gap-2.5">
-          <span class="text-2xl">📂</span>
+  <div id="cloudModal" class="fixed inset-0 z-50 hidden bg-[#2C2A29]/40 backdrop-blur-xs flex items-center justify-center p-4">
+    <div class="bg-white rounded-2xl max-w-3xl w-full max-h-[82vh] flex flex-col shadow-2xl border border-[#E8E3DC] overflow-hidden">
+      <div class="px-6 py-5 bg-[#FAF8F5] border-b border-[#E8E3DC] flex items-center justify-between">
+        <div class="flex items-center gap-3">
+          <span class="w-10 h-10 rounded-xl bg-[#F9F2F1] border border-[#EAD8D6] flex items-center justify-center text-xl">📂</span>
           <div>
-            <h3 class="font-black text-base sm:text-lg">全站表單與雲端資料夾快速目錄</h3>
-            <p class="text-xs text-teal-100">點擊即可直接開啟對應表單或雲端硬碟</p>
+            <h3 class="font-bold text-base sm:text-lg text-[#2C2A29]">全站表單與雲端資料夾快速目錄</h3>
+            <p class="text-xs text-[#7D7873] mt-0.5">點擊即可直接開啟對應表單或雲端硬碟</p>
           </div>
         </div>
-        <button id="btnCloseCloudModal" type="button" class="w-8 h-8 rounded-full bg-white/20 hover:bg-white/30 flex items-center justify-center text-white font-bold">
+        <button id="btnCloseCloudModal" type="button" class="w-8 h-8 rounded-lg bg-[#F3EFEA] hover:bg-[#E8E3DC] flex items-center justify-center text-[#5C5753] font-bold">
           ✕
         </button>
       </div>
-      <div class="p-5 overflow-y-auto custom-scrollbar space-y-2.5 flex-1" id="cloudModalBody"></div>
+      <div class="p-6 overflow-y-auto custom-scrollbar space-y-2.5 flex-1 bg-white" id="cloudModalBody"></div>
     </div>
   </div>
 
   <!-- Footer -->
-  <footer class="bg-white border-t-2 border-teal-100 mt-16 w-full">
-    <div class="w-full px-4 sm:px-8 py-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs sm:text-sm text-slate-500">
+  <footer class="bg-white border-t border-[#E8E3DC] w-full">
+    <div class="w-full px-4 sm:px-10 py-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs sm:text-sm text-[#7D7873]">
       <div class="flex items-center gap-2">
-        <span class="text-lg">🌱</span>
-        <span class="font-bold text-teal-900">南投縣新豐國小特教資源網</span>
-        <span>｜</span>
+        <span class="text-base">🌱</span>
         <span>溫暖接納・專業支持</span>
       </div>
-      <div class="text-xs text-slate-400">
+      <div class="text-xs text-[#9E9892]">
         南投縣新豐國民小學 特殊教育團隊
       </div>
     </div>
   </footer>
 
   <!-- Toast Notification -->
-  <div id="toastBox" class="fixed bottom-5 right-5 z-50 hidden bg-teal-900 text-white px-4 py-3 rounded-2xl shadow-xl border-2 border-teal-300 flex items-center gap-2 text-xs sm:text-sm font-bold">
+  <div id="toastBox" class="fixed bottom-5 right-5 z-50 hidden bg-[#2C2A29] text-white px-4 py-3 rounded-xl shadow-xl border border-[#4A4642] flex items-center gap-2 text-xs sm:text-sm font-bold">
     <span id="toastIcon">✨</span>
     <span id="toastText">系統提示</span>
   </div>
@@ -234,7 +235,7 @@
       siteInfo: {
         schoolName: "南投縣新豐國小",
         siteTitle: "南投縣新豐國小特教網",
-        portalTitle: "特殊教育資源平台",
+        portalTitle: "特殊教育資源網",
         heroSubtitle: "點亮每個孩子心中的蠟燭，讓他發光發熱。"
       },
       referralZone: {
@@ -306,7 +307,7 @@
             shortName: "學習障礙",
             folderUrl: "https://drive.google.com/drive/folders/1hUWeFRXGhU0LWsKZy4fS2fBCrbD67EbL",
             legalArticle: "依據《身心障礙及資賦優異學生鑑定辦法》第 10 條",
-            legalDefinition: "本法第三條第九款所稱學習障礙，統稱神經心理功能異常而顯現出注意、記憶、理解、知覺、知覺動作、推理等能力有問題，致在聽、說、讀、寫 or 算等學習上有顯著困難者；其障礙並非因感官、智能、情緒等障礙因素或文化刺激不足、教學不當等環境因素所直接造成之結果。",
+            legalDefinition: "本法第三條第九款所稱學習障礙，統稱神經心理功能異常而顯現出注意、記憶、理解、知覺、知覺動作、推理等能力有問題，致在聽、說、讀、寫或算等學習上有顯著困難者；其障礙並非因感官、智能、情緒等障礙因素或文化刺激不足、教學不當等環境因素所直接造成之結果。",
             criteriaPoints: [
               "智力正常或在正常程度以上（排除智能障礙）。",
               "個人內在能力有顯著差異（認知與成就表現差距顯著）。",
@@ -350,7 +351,7 @@
                   "面臨考試、發問或陌生情境易過度緊繃，常出現畏懼上學或強烈社交退縮。",
                   "長期情緒低落、容易自責悲觀、哭泣，對日常課業與活動全面喪失興趣與動力。",
                   "專注力弱與神遊發呆：課堂安靜但眼神渙散、頻繁放空神遊。",
-                  "個人物品與抽屜極度混亂，頻繁遺失文具書籍，常遺忘繳交作業或帶回聯絡簿。。"
+                  "個人物品與抽屜極度混亂，頻繁遺失文具書籍，常遺忘繳交作業或帶回聯絡簿。"
                 ]
               }
             ],
@@ -426,10 +427,10 @@
         ],
         therapistsLegalBasis: "依據《特殊教育支持服務及專業團隊運作辦法》第四條：專業團隊由特殊教育教師、普通教育教師、特殊教育相關專業人員及學校行政人員組成，依學生需求提供統整性之特殊教育及相關支持服務。",
         therapists: [
-          { role: "職能治療師 (OT)", icon: "✋", targetStudents: "動作協調、書寫精細動作、感覺統合、生活自理或社交互動需強化之學生", services: ["強化身體協調訓練與姿勢控制穩定度", "精細動作拆解訓練", "視覺與視知覺訓練", "生活自理能力訓練"] },
-          { role: "語言治療師 (ST)", icon: "🗣️", targetStudents: "構音異常、語言理解與表達遲緩、語暢異常或吞嚥困難之學生", services: ["協助正確發音與構音矯正訓練", "提升口語理解能力與完整句型表達", "改善說話流暢度", "規劃替代性溝通策略"] },
-          { role: "物理治療師 (PT)", icon: "🏃", targetStudents: "動作發展遲緩、腦性麻痺或肢體障礙等粗動作與移行需協助之學生", services: ["粗動作控制訓練", "四肢協調與肌耐力訓練", "校園無障礙環境動線與行動輔具評估調整"] },
-          { role: "臨床心理師 (CP)", icon: "💚", targetStudents: "出現情緒崩潰、社交挫折、衝動控制困難、退縮焦慮之學生", services: ["針對情緒崩潰與高度焦慮提供心理支持策略", "協助改善社交挫折", "擬定正向行為輔導建議"] }
+          { role: "職能治療師", icon: "✋", targetStudents: "動作協調、書寫精細動作、感覺統合、生活自理或社交互動需強化之學生", services: ["強化身體協調訓練與姿勢控制穩定度", "精細動作拆解訓練", "視覺與視知覺訓練", "生活自理能力訓練"] },
+          { role: "語言治療師", icon: "🗣️", targetStudents: "構音異常、語言理解與表達遲緩、語暢異常或吞嚥困難之學生", services: ["協助正確發音與構音矯正訓練", "提升口語理解能力與完整句型表達", "改善說話流暢度", "規劃替代性溝通策略"] },
+          { role: "物理治療師", icon: "🏃", targetStudents: "動作發展遲緩、腦性麻痺或肢體障礙等粗動作與移行需協助之學生", services: ["粗動作控制訓練", "四肢協調與肌耐力訓練", "校園無障礙環境動線與行動輔具評估調整"] },
+          { role: "臨床心理師", icon: "💚", targetStudents: "出現情緒崩潰、社交挫折、衝動控制困難、退縮焦慮之學生", services: ["針對情緒崩潰與高度焦慮提供心理支持策略", "協助改善社交挫折", "擬定正向行為輔導建議"] }
         ],
         assistants: {
           intro: "特教學生助理員在教師督導下，協助身心障礙學生在校園中的生活自理、課程參與及安全維護：",
@@ -443,9 +444,9 @@
         behaviorStrategies: {
           abcSource: "引用自：鈕文英《行為問題診斷》── 行為問題可能發生的環境因素與功能分析",
           abcAnalysis: [
-            { stage: "A 前事與環境因素 (Antecedent)", badge: "誘發情境", points: ["物理環境刺激：噪音過大、光線刺眼、空間擁擠。", "課程與任務因素：教材難度過高、作業量太大、活動轉換缺乏預告。", "人際與身心狀態：同儕言語衝突、生理疲勞、飢餓。"] },
-            { stage: "B 行為表現與可能功能 (Behavior & Function)", badge: "行為動機", points: ["獲得外在關注或物品：希望吸引師長注意。", "逃避或推遲嫌惡刺激：想逃避困難功課或緊張社交。", "感官知覺與內在調節：尋求特定感官刺激或宣洩焦慮。"] },
-            { stage: "C 後果與預防調整 (Consequence & Prevention)", badge: "介入策略", points: ["前事調整：預告作息改變、提供視覺結構提示。", "教導替代行為：教導舉手或出示休息卡。", "後果處理：展現正向替代行為時立即給予肯定。"] }
+            { stage: "一、前事與環境因素", badge: "誘發情境", points: ["物理環境刺激：噪音過大、光線刺眼、空間擁擠。", "課程與任務因素：教材難度過高、作業量太大、活動轉換缺乏預告。", "人際與身心狀態：同儕言語衝突、生理疲勞、飢餓。"] },
+            { stage: "二、行為表現與可能功能", badge: "行為動機", points: ["獲得外在關注或物品：希望吸引師長注意。", "逃避或推遲嫌惡刺激：想逃避困難功課或緊張社交。", "感官知覺與內在調節：尋求特定感官刺激或宣洩焦慮。"] },
+            { stage: "三、後果與預防調整", badge: "介入策略", points: ["前事調整：預告作息改變、提供視覺結構提示。", "教導替代行為：教導舉手或出示休息卡。", "後果處理：展現正向替代行為時立即給予肯定。"] }
           ],
           crisisSource: "修改自：臺師大特教系《學生爆發性行為處理策略》── 三階段危機處理流程建議",
           crisisPhases: [
@@ -455,11 +456,11 @@
           ]
         },
         pbsFolder: {
-          title: "正向行為支持 (PBS) 行為功能介入表件資料夾",
+          title: "正向行為支持行為功能介入表件資料夾",
           folderUrl: "https://drive.google.com/drive/folders/1JnJ6j12pK2RYgNhysmEtNmWUHLAUz9Y_",
-          description: "收錄校內實施正向行為支持（PBS）所需之 ABCR 行為觀察紀錄表、範例、七階段策略與量表。",
+          description: "收錄校內實施正向行為支持所需之行為觀察紀錄表、範例、七階段策略與量表。",
           files: [
-            { name: "1.ABCR行為觀察紀錄.docx", type: "Word 表件", desc: "空白可編輯之 ABCR 行為觀察紀錄表。", url: "https://drive.google.com/file/d/1fL8pMPG9NbIzqzQ1FFKarTKNl9Bo0cVN/view" },
+            { name: "1.ABCR行為觀察紀錄.docx", type: "Word 表件", desc: "空白可編輯之行為觀察紀錄表。", url: "https://drive.google.com/file/d/1fL8pMPG9NbIzqzQ1FFKarTKNl9Bo0cVN/view" },
             { name: "1.ABCR記錄表-範例.pdf", type: "PDF 範例", desc: "提供實際填寫示範。", url: "https://drive.google.com/drive/folders/1JnJ6j12pK2RYgNhysmEtNmWUHLAUz9Y_" },
             { name: "1.七階段特徵及策略.pdf", type: "PDF 指南", desc: "詳列行為問題發展七階段之特徵與對應策略。", url: "https://drive.google.com/drive/folders/1JnJ6j12pK2RYgNhysmEtNmWUHLAUz9Y_" },
             { name: "教師教學與班級經營策略表.docx", type: "Word 表件", desc: "提供普通班與特教教師檢視與調整教學策略表。", url: "https://drive.google.com/drive/folders/1JnJ6j12pK2RYgNhysmEtNmWUHLAUz9Y_" },
@@ -472,9 +473,9 @@
         items: [
           { icon: "🏛️", title: "南投縣特教資源中心", category: "官方行政與鑑定資源", description: "南投縣政府特殊教育資源中心官方網站。", url: "https://spec.ntct.edu.tw/" },
           { icon: "🌐", title: "全國特教資訊網", category: "官方行政與鑑定資源", description: "教育部全國特殊教育資訊網。", url: "https://special.moe.gov.tw/" },
-          { icon: "🎬", title: "特殊教育多媒體教材交流社團", category: "教材與社群交流", description: "Facebook 特教教師社群。", url: "https://www.facebook.com/groups/1494494560599892/" },
+          { icon: "🎬", title: "特殊教育多媒體教材交流社團", category: "教材與社群交流", description: "特教教師社群。", url: "https://www.facebook.com/groups/1494494560599892/" },
           { icon: "💻", title: "特教米克師", category: "教材與社群交流", description: "分享豐富實用教材調整及工具。", url: "https://spedmix.pages.dev/" },
-          { icon: "💡", title: "特教老師的好點子 x MSJ special idea", category: "教材與社群交流", description: "分享豐富實用的資源班教學創意。", url: "https://www.facebook.com/people/%E7%89%B9%E6%95%99%E8%80%81%E5%B8%AB%E7%9A%84%E5%A5%BD%E9%BB%9E%E5%AD%90-x-MSJ-special-idea/100064580897994/" },
+          { icon: "💡", title: "特教老師的好點子", category: "教材與社群交流", description: "分享豐富實用的資源班教學創意。", url: "https://www.facebook.com/people/%E7%89%B9%E6%95%99%E8%80%81%E5%B8%AB%E7%9A%84%E5%A5%BD%E9%BB%9E%E5%AD%90-x-MSJ-special-idea/100064580897994/" },
           { icon: "🖐️", title: "思誼 職能治療師", category: "專業治療與親職專欄", description: "分享兒童精細動作與感覺統合訓練圖文。", url: "https://www.facebook.com/ot.workflow" }
         ]
       }
@@ -496,7 +497,7 @@
       { id: "therapists", icon: "🩺", label: "專業治療師介紹" },
       { id: "assistants", icon: "🤝", label: "特教學生助理員" },
       { id: "behavior", icon: "🧭", label: "問題行為處理策略" },
-      { id: "pbs", icon: "📂", label: "PBS 介入表件下載" }
+      { id: "pbs", icon: "📂", label: "正向行為表件下載" }
     ];
 
     let activeTab = "home";
@@ -510,10 +511,9 @@
     let iepAdminRecords = [];
     let isIepAdminDrawerOpen = false;
 
-    // 🔒 特教工具箱解鎖狀態與後端資料
     let isSpecialToolsUnlocked = false;
     let specialToolsData = [];
-    let openDrawersState = {}; // 記憶各個抽屜目前是展開還是收合
+    let openDrawersState = {};
 
     function showToast(msg, icon = "✨") {
       const box = document.getElementById("toastBox");
@@ -558,10 +558,10 @@
           <button
             type="button"
             data-tab-id="${t.id}"
-            class="nav-tab-btn shrink-0 flex items-center gap-1.5 px-4 py-2.5 rounded-2xl font-black text-xs sm:text-sm border-2 transition ${
+            class="nav-tab-btn shrink-0 flex items-center gap-1.5 px-4 py-2 rounded-lg font-bold text-xs sm:text-sm border transition ${
               isActive
-                ? "bg-teal-600 text-white border-teal-700 shadow-xs"
-                : "bg-white hover:bg-teal-50 text-slate-700 border-teal-100"
+                ? "bg-[#B06E66] text-white border-[#B06E66] shadow-2xs"
+                : "bg-white hover:bg-[#F9F2F1] text-[#5C5753] border-[#E8E3DC]"
             }"
           >
             <span>${t.icon}</span>
@@ -583,67 +583,69 @@
       const info = SITE_CONFIG.siteInfo;
 
       return `
-        <!-- Full-Width Hero Banner -->
-        <section class="warm-card bg-gradient-to-br from-teal-50/95 via-white to-emerald-50/80 p-8 sm:p-14 md:p-16 w-full space-y-8 shadow-md">
-          <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+        <section class="warm-card bg-white p-8 sm:p-14 lg:p-16 w-full flex-1 flex items-center">
+          <div class="w-full grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
             
             <!-- Left Info Area -->
-            <div class="lg:col-span-7 space-y-6">
-              <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-teal-100/90 text-teal-900 text-xs sm:text-sm font-black border border-teal-200 shadow-2xs">
-                <span>🏫 ${info.schoolName}</span>
-                <span>·</span>
-                <span>特殊教育資源</span>
-              </div>
-              <h2 class="text-3xl sm:text-4xl md:text-5xl font-black text-teal-950 tracking-tight leading-tight">
+            <div class="lg:col-span-6 space-y-7">
+              <h2 class="text-4xl sm:text-5xl lg:text-6xl font-bold text-[#2C2A29] tracking-tight leading-tight">
                 ${info.portalTitle}
               </h2>
-              <p class="text-slate-600 text-base sm:text-lg leading-relaxed">
+              <p class="text-[#6E6A66] text-lg sm:text-xl leading-relaxed border-l-4 border-[#B06E66] pl-5">
                 ${info.heroSubtitle}
               </p>
-              <div class="flex flex-wrap items-center gap-4 pt-2">
-                <button type="button" data-goto-tab="iep" class="hero-jump-btn flex items-center gap-2.5 px-6 py-4 rounded-2xl bg-teal-600 hover:bg-teal-700 text-white font-black text-sm sm:text-base shadow-md transition transform hover:-translate-y-0.5">
+              <div class="flex flex-wrap items-center gap-4 pt-3">
+                <button type="button" data-goto-tab="iep" class="hero-jump-btn flex items-center gap-2.5 px-7 py-4 rounded-xl bg-[#B06E66] hover:bg-[#96574F] text-white font-bold text-base shadow-xs transition">
                   <span>📅</span>
                   <span>立即預約 IEP 會議</span>
                 </button>
                 <a href="${REPORT_SYSTEM_URL}" target="_blank" rel="noopener noreferrer"
-                  class="flex items-center gap-2.5 px-6 py-4 rounded-2xl bg-amber-500 hover:bg-amber-600 text-white font-black text-sm sm:text-base shadow-md transition transform hover:-translate-y-0.5">
+                  class="flex items-center gap-2.5 px-7 py-4 rounded-xl bg-[#FAF8F5] hover:bg-[#F3EFEA] text-[#2C2A29] border border-[#D8D1C7] font-bold text-base transition">
                   <span>📋</span>
-                  <span>線上鑑定提報系統 ↗</span>
+                  <span>線上鑑定提報系統 →</span>
                 </a>
               </div>
             </div>
 
             <!-- Right Shortcut Cards -->
-            <div class="lg:col-span-5 grid grid-cols-1 sm:grid-cols-2 gap-4">
-              <button type="button" data-goto-tab="iep" class="hero-jump-btn text-left p-5 rounded-2xl bg-white hover:bg-teal-50/60 border-2 border-teal-200 transition shadow-2xs group">
-                <div class="text-3xl mb-2 group-hover:scale-110 transition">📅</div>
-                <div class="font-black text-teal-950 text-sm sm:text-base">新豐國小IEP會議預約</div>
-                <div class="text-xs sm:text-sm text-teal-700 font-bold mt-1.5">
-                  線上登記與時段選擇 →
+            <div class="lg:col-span-6 grid grid-cols-1 sm:grid-cols-2 gap-5">
+              <button type="button" data-goto-tab="iep" class="hero-jump-btn warm-card-hover text-left p-7 rounded-2xl bg-[#FAF8F5] hover:bg-white border border-[#E8E3DC] transition group flex flex-col justify-between min-h-[165px]">
+                <div class="text-3xl mb-3">📅</div>
+                <div>
+                  <div class="font-bold text-[#2C2A29] text-lg">新豐國小IEP會議預約</div>
+                  <div class="text-sm text-[#B06E66] font-bold mt-2">
+                    線上登記與時段選擇 →
+                  </div>
                 </div>
               </button>
 
-              <button type="button" data-goto-tab="referral" class="hero-jump-btn text-left p-5 rounded-2xl bg-white hover:bg-amber-50/60 border-2 border-amber-200 transition shadow-2xs group">
-                <div class="text-3xl mb-2 group-hover:scale-110 transition">📋</div>
-                <div class="font-black text-slate-900 text-sm sm:text-base">鑑定安置提報專區</div>
-                <div class="text-xs sm:text-sm text-amber-800 font-bold mt-1.5">
-                  線上提報系統與障別基準 →
+              <button type="button" data-goto-tab="referral" class="hero-jump-btn warm-card-hover text-left p-7 rounded-2xl bg-[#FAF8F5] hover:bg-white border border-[#E8E3DC] transition group flex flex-col justify-between min-h-[165px]">
+                <div class="text-3xl mb-3">📋</div>
+                <div>
+                  <div class="font-bold text-[#2C2A29] text-lg">鑑定安置提報專區</div>
+                  <div class="text-sm text-[#B06E66] font-bold mt-2">
+                    線上提報系統與障別基準 →
+                  </div>
                 </div>
               </button>
 
-              <button type="button" data-goto-tab="communication" class="hero-jump-btn text-left p-5 rounded-2xl bg-white hover:bg-emerald-50/60 border-2 border-emerald-200 transition shadow-2xs group">
-                <div class="text-3xl mb-2 group-hover:scale-110 transition">🏫</div>
-                <div class="font-black text-slate-900 text-sm sm:text-base">資源班運作模式</div>
-                <div class="text-xs sm:text-sm text-emerald-800 font-bold mt-1.5">
-                  抽離外加與服務型態 →
+              <button type="button" data-goto-tab="communication" class="hero-jump-btn warm-card-hover text-left p-7 rounded-2xl bg-[#FAF8F5] hover:bg-white border border-[#E8E3DC] transition group flex flex-col justify-between min-h-[165px]">
+                <div class="text-3xl mb-3">🏫</div>
+                <div>
+                  <div class="font-bold text-[#2C2A29] text-lg">資源班運作模式</div>
+                  <div class="text-sm text-[#B06E66] font-bold mt-2">
+                    抽離外加與服務型態 →
+                  </div>
                 </div>
               </button>
 
-              <button type="button" data-goto-tab="specialTools" class="hero-jump-btn text-left p-5 rounded-2xl bg-white hover:bg-orange-50/60 border-2 border-orange-200 transition shadow-2xs group">
-                <div class="text-3xl mb-2 group-hover:scale-110 transition">🧰</div>
-                <div class="font-black text-slate-900 text-sm sm:text-base">特教工具箱</div>
-                <div class="text-xs sm:text-sm text-orange-800 font-bold mt-1.5">
-                  校內專用系統整合 →
+              <button type="button" data-goto-tab="specialTools" class="hero-jump-btn warm-card-hover text-left p-7 rounded-2xl bg-[#FAF8F5] hover:bg-white border border-[#E8E3DC] transition group flex flex-col justify-between min-h-[165px]">
+                <div class="text-3xl mb-3">🧰</div>
+                <div>
+                  <div class="font-bold text-[#2C2A29] text-lg">特教工具箱</div>
+                  <div class="text-sm text-[#B06E66] font-bold mt-2">
+                    校內專用系統整合 →
+                  </div>
                 </div>
               </button>
             </div>
@@ -655,45 +657,45 @@
 
     function renderIepView() {
       return `
-        <div class="warm-card p-6 space-y-4 w-full">
-          <div class="flex flex-wrap items-center justify-between gap-3 border-b border-teal-100 pb-4">
+        <div class="warm-card p-6 sm:p-8 space-y-5 w-full">
+          <div class="flex flex-wrap items-center justify-between gap-3 border-b border-[#ECE7DF] pb-4">
             <div class="flex items-center gap-3">
-              <span class="w-12 h-12 rounded-2xl bg-teal-100 border border-teal-300 flex items-center justify-center text-2xl">📅</span>
+              <span class="w-11 h-11 rounded-xl bg-[#F9F2F1] border border-[#EAD8D6] flex items-center justify-center text-xl">📅</span>
               <div>
-                <h2 class="text-xl sm:text-2xl font-black text-teal-950">新豐國小IEP會議預約</h2>
+                <h2 class="text-xl sm:text-2xl font-bold text-[#2C2A29]">新豐國小IEP會議預約</h2>
               </div>
             </div>
             <div class="flex items-center gap-2">
               <button type="button" id="btnToggleIepAdmin"
-                class="px-4 py-2.5 rounded-2xl bg-amber-50 hover:bg-amber-100 text-amber-900 border-2 border-amber-200 font-bold text-xs sm:text-sm transition flex items-center gap-1.5">
+                class="px-4 py-2 rounded-lg bg-[#F9F2F1] hover:bg-[#F2E2E0] text-[#7E4842] border border-[#EAD8D6] font-bold text-xs sm:text-sm transition flex items-center gap-1.5">
                 <span>🔐</span>
                 <span>${isIepAdminDrawerOpen ? "收合預約管理" : "預約名單管理 (管理員)"}</span>
               </button>
               <a href="${GAS_WEB_APP_URL}" target="_blank" rel="noopener noreferrer"
-                class="px-4 py-2.5 rounded-2xl bg-teal-50 hover:bg-teal-100 text-teal-900 border-2 border-teal-200 font-bold text-xs sm:text-sm transition flex items-center gap-1.5">
+                class="px-4 py-2 rounded-lg bg-[#FAF8F5] hover:bg-[#F3EFEA] text-[#2C2A29] border border-[#E2DCD3] font-bold text-xs sm:text-sm transition flex items-center gap-1.5">
                 <span>在新分頁開啟 ↗</span>
               </a>
             </div>
           </div>
 
           <!-- 管理員預約名單抽屜 -->
-          <div id="iepAdminDrawer" class="${isIepAdminDrawerOpen ? 'block' : 'hidden'} bg-amber-50/40 border-2 border-amber-200 rounded-3xl p-5 sm:p-6 space-y-4 transition">
-            <div class="flex flex-wrap items-center justify-between gap-2 border-b border-amber-200 pb-3">
+          <div id="iepAdminDrawer" class="${isIepAdminDrawerOpen ? 'block' : 'hidden'} bg-[#F9F2F1]/60 border border-[#EAD8D6] rounded-xl p-5 sm:p-6 space-y-4 transition">
+            <div class="flex flex-wrap items-center justify-between gap-2 border-b border-[#EAD8D6] pb-3">
               <div>
-                <h3 class="font-black text-slate-900 text-base sm:text-lg flex items-center gap-2">
+                <h3 class="font-bold text-[#2C2A29] text-base sm:text-lg flex items-center gap-2">
                   <span>📋</span>
                   <span>全校 IEP 預約總覽與時段管理</span>
                 </h3>
-                <p class="text-xs text-slate-500">點擊刪除即可將預約自試算表中移除，被取消的時段將立即變回可預約狀態。</p>
+                <p class="text-xs text-[#6E6A66]">點擊刪除即可將預約自試算表中移除，被取消的時段將立即變回可預約狀態。</p>
               </div>
-              <button type="button" id="btnRefreshIepAdmin" class="px-3.5 py-1.5 rounded-xl bg-white hover:bg-slate-50 border border-slate-200 text-slate-700 font-bold text-xs">
+              <button type="button" id="btnRefreshIepAdmin" class="px-3.5 py-1.5 rounded-lg bg-white hover:bg-[#FAF8F5] border border-[#E2DCD3] text-[#5C5753] font-bold text-xs">
                 🔄 重新整理清單
               </button>
             </div>
 
-            <div class="w-full overflow-x-auto rounded-2xl border border-amber-200 bg-white">
+            <div class="w-full overflow-x-auto rounded-xl border border-[#E8E3DC] bg-white">
               <table class="w-full text-left text-xs sm:text-sm">
-                <thead class="bg-amber-100/60 border-b border-amber-200 text-amber-950 font-black">
+                <thead class="bg-[#FAF8F5] border-b border-[#E8E3DC] text-[#5C5753] font-bold">
                   <tr>
                     <th class="p-3">日期</th>
                     <th class="p-3">節數</th>
@@ -703,7 +705,7 @@
                     <th class="p-3 text-right">操作</th>
                   </tr>
                 </thead>
-                <tbody id="iepAdminTableBody" class="divide-y divide-amber-100">
+                <tbody id="iepAdminTableBody" class="divide-y divide-[#F0ECE6]">
                   ${renderIepAdminTableRows()}
                 </tbody>
               </table>
@@ -711,7 +713,7 @@
           </div>
 
           <!-- 預約系統 iframe -->
-          <div class="w-full rounded-2xl overflow-hidden border-2 border-teal-200 bg-white shadow-inner">
+          <div class="w-full rounded-xl overflow-hidden border border-[#E8E3DC] bg-white">
             <iframe id="iepIframe" src="${GAS_WEB_APP_URL}" class="w-full border-0" style="min-height: 800px; height: 100vh;" title="新豐國小IEP會議預約系統"></iframe>
           </div>
         </div>
@@ -720,17 +722,17 @@
 
     function renderIepAdminTableRows() {
       if (!iepAdminRecords || iepAdminRecords.length === 0) {
-        return `<tr><td colspan="6" class="p-6 text-center text-slate-400">目前尚無任何會議預約紀錄</td></tr>`;
+        return `<tr><td colspan="6" class="p-6 text-center text-[#9E9892]">目前尚無任何會議預約紀錄</td></tr>`;
       }
       return iepAdminRecords.map(r => `
-        <tr class="hover:bg-amber-50/50 transition">
-          <td class="p-3 font-bold text-slate-900">${r.date}</td>
-          <td class="p-3 font-bold text-teal-800">${r.sheetName === '其他' ? r.slot : `第 ${r.slot} 節`}</td>
+        <tr class="hover:bg-[#FAF8F5] transition">
+          <td class="p-3 font-bold text-[#2C2A29]">${r.date}</td>
+          <td class="p-3 font-bold text-[#B06E66]">${r.sheetName === '其他' ? r.slot : `第 ${r.slot} 節`}</td>
           <td class="p-3">${r.room}</td>
-          <td class="p-3 font-bold text-slate-800">${r.attendees}</td>
-          <td class="p-3 text-slate-500 text-xs">${r.submittedAt}</td>
+          <td class="p-3 font-bold text-[#2C2A29]">${r.attendees}</td>
+          <td class="p-3 text-[#7D7873] text-xs">${r.submittedAt}</td>
           <td class="p-3 text-right">
-            <button type="button" class="btn-delete-booking text-rose-600 hover:text-rose-800 font-bold underline text-xs"
+            <button type="button" class="btn-delete-booking text-[#B84A4A] hover:underline font-bold text-xs"
               data-sheet="${r.sheetName}" data-row="${r.rowNumber}" data-date="${r.date}" data-slot="${r.slot}">
               刪除 / 釋出
             </button>
@@ -802,66 +804,64 @@
       document.body.appendChild(script);
     }
 
-    // 🌟 卡片渲染輔助函式（米克師風格卡片）
     function renderToolCardHtml(tool) {
       return `
         <a href="${tool.url}" target="_blank" rel="noopener noreferrer"
-          class="group relative bg-white border border-slate-200/90 hover:border-orange-300 rounded-3xl p-6 transition-all duration-200 hover:-translate-y-1 hover:shadow-xl hover:shadow-orange-500/10 flex flex-col justify-between gap-4">
+          class="group relative bg-white border border-[#E8E3DC] hover:border-[#B06E66] rounded-xl p-6 transition-all duration-200 hover:-translate-y-1 hover:shadow-md flex flex-col justify-between gap-4">
           
           ${tool.badge ? `
-            <span class="absolute -top-2.5 left-6 px-2.5 py-0.5 rounded-full text-[11px] font-black bg-gradient-to-r from-orange-500 to-amber-500 text-white shadow-xs">
+            <span class="absolute -top-2.5 left-5 px-2.5 py-0.5 rounded-md text-[11px] font-bold bg-[#B06E66] text-white shadow-2xs">
               ${tool.badge}
             </span>
           ` : ''}
 
           <div class="space-y-3.5">
             <div class="flex items-start justify-between gap-2">
-              <div class="w-12 h-12 rounded-2xl bg-amber-50 border border-amber-200/70 text-orange-600 flex items-center justify-center text-2xl group-hover:scale-105 transition shrink-0">
+              <div class="w-11 h-11 rounded-xl bg-[#FAF8F5] border border-[#E8E3DC] text-[#B06E66] flex items-center justify-center text-xl group-hover:scale-105 transition shrink-0">
                 ${tool.icon || '🛠️'}
               </div>
               ${tool.tag ? `
-                <span class="text-[11px] font-bold px-3 py-1 rounded-full bg-slate-50 group-hover:bg-orange-50 text-slate-600 group-hover:text-orange-800 border border-slate-200 group-hover:border-orange-200 transition">
+                <span class="text-[11px] font-bold px-2.5 py-1 rounded-md bg-[#FAF8F5] group-hover:bg-[#F9F2F1] text-[#6E6A66] group-hover:text-[#7E4842] border border-[#E8E3DC] group-hover:border-[#EAD8D6] transition">
                   ${tool.tag}
                 </span>
               ` : ''}
             </div>
 
             <div class="space-y-1.5">
-              <h3 class="font-black text-slate-900 text-base group-hover:text-orange-600 transition tracking-tight">
+              <h3 class="font-bold text-[#2C2A29] text-base group-hover:text-[#B06E66] transition tracking-tight">
                 ${tool.title}
               </h3>
-              <p class="text-xs sm:text-sm text-slate-500 leading-relaxed line-clamp-2">
+              <p class="text-xs sm:text-sm text-[#6E6A66] leading-relaxed line-clamp-2">
                 ${tool.desc}
               </p>
             </div>
           </div>
 
-          <div class="pt-2 border-t border-slate-100 flex items-center justify-between text-xs font-bold text-orange-600 group-hover:text-orange-700">
+          <div class="pt-3 border-t border-[#F0ECE6] flex items-center justify-between text-xs font-bold text-[#B06E66]">
             <span>開啟系統</span>
-            <span class="transform group-hover:translate-x-1 transition">↗</span>
+            <span class="transform group-hover:translate-x-1 transition">→</span>
           </div>
         </a>
       `;
     }
 
-    // 🌟 全自動歸納特教工具箱（自動依 category 分類，自動生出抽屜）
     function renderSpecialToolsView() {
       if (!isSpecialToolsUnlocked) {
         return `
-          <div class="p-8 max-w-md mx-auto space-y-6 text-center my-12 bg-white border-2 border-orange-200/90 rounded-3xl shadow-lg">
-            <div class="w-16 h-16 rounded-3xl bg-gradient-to-br from-amber-100 to-orange-100 text-orange-600 text-3xl flex items-center justify-center mx-auto shadow-xs border border-orange-200">
+          <div class="p-8 max-w-md mx-auto space-y-6 text-center my-auto bg-white border border-[#E8E3DC] rounded-2xl shadow-sm">
+            <div class="w-14 h-14 rounded-2xl bg-[#F9F2F1] text-[#B06E66] text-2xl flex items-center justify-center mx-auto border border-[#EAD8D6]">
               🧰
             </div>
             <div>
-              <h2 class="text-xl font-black text-slate-800">特教工具箱</h2>
-              <p class="text-xs text-slate-500 mt-1.5 leading-relaxed">此專區整合校內特教老師專用工具與系統，請輸入專屬密碼解鎖。</p>
+              <h2 class="text-xl font-bold text-[#2C2A29]">特教工具箱</h2>
+              <p class="text-xs text-[#6E6A66] mt-1.5 leading-relaxed">此專區整合校內特教老師專用工具與系統，請輸入專屬密碼解鎖。</p>
             </div>
             <div class="space-y-3.5">
               <input id="specialToolsPwdInput" type="password" placeholder="請輸入特教專屬密碼"
-                class="w-full text-center text-lg py-2.5 border-2 border-orange-200 rounded-2xl focus:border-orange-500 focus:outline-none bg-orange-50/20" />
-              <p id="specialToolsPwdError" class="text-xs text-rose-600 font-bold min-h-[1.2rem]"></p>
+                class="w-full text-center text-base py-2.5 border border-[#D8D1C7] rounded-lg focus:border-[#B06E66] focus:outline-none bg-[#FAF8F5]" />
+              <p id="specialToolsPwdError" class="text-xs text-[#B84A4A] font-bold min-h-[1.2rem]"></p>
               <button type="button" id="btnSubmitSpecialToolsLogin"
-                class="w-full py-3 rounded-2xl bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-600 hover:to-orange-600 text-white font-black text-xs sm:text-sm shadow-md transition transform hover:-translate-y-0.5">
+                class="w-full py-3 rounded-lg bg-[#B06E66] hover:bg-[#96574F] text-white font-bold text-xs sm:text-sm transition">
                 驗證並解鎖工具箱
               </button>
             </div>
@@ -869,17 +869,13 @@
         `;
       }
 
-      // 1. 自動篩選主要一般工具 (category === 'general' 或未設定者)
       const generalTools = specialToolsData.filter(t => !t.category || t.category === "general");
-
-      // 2. 自動抓出所有自訂抽屜分類 (排除 general)
       const otherCategories = Array.from(new Set(
         specialToolsData
           .map(t => t.category)
           .filter(c => c && c !== "general")
       ));
 
-      // 分類對應的預設圖示與中文名稱字典
       const categoryMeta = {
         "finance": { name: "經費相關工具", icon: "💰", subtitle: "特教助理人員鐘點費核銷、印領清冊自動產生" },
         "pe": { name: "適應體育專區", icon: "⚾", subtitle: "適性體育賽事、運動輔具與選手培訓表件" },
@@ -887,39 +883,39 @@
       };
 
       return `
-        <div class="bg-gradient-to-b from-orange-50/30 to-white border-2 border-orange-100 rounded-3xl p-6 sm:p-10 space-y-8 w-full shadow-sm">
+        <div class="warm-card p-6 sm:p-10 space-y-8 w-full">
           
           <!-- 頂部標題與說明 -->
-          <div class="flex flex-wrap items-center justify-between gap-4 border-b border-orange-100 pb-5">
+          <div class="flex flex-wrap items-center justify-between gap-4 border-b border-[#ECE7DF] pb-5">
             <div class="flex items-center gap-3.5">
-              <div class="w-12 h-12 rounded-2xl bg-gradient-to-br from-amber-100 to-orange-100 border border-orange-200 text-orange-600 flex items-center justify-center text-2xl shadow-2xs">
+              <div class="w-11 h-11 rounded-xl bg-[#F9F2F1] border border-[#EAD8D6] text-[#B06E66] flex items-center justify-center text-xl">
                 🧰
               </div>
               <div>
-                <div class="flex items-center gap-2">
-                  <h2 class="text-xl sm:text-2xl font-black text-slate-900 tracking-tight">特教工具箱</h2>
-                  <span class="text-xs font-bold px-2.5 py-0.5 rounded-full bg-orange-100 text-orange-800 border border-orange-200">
+                <div class="flex items-center gap-2.5">
+                  <h2 class="text-xl sm:text-2xl font-bold text-[#2C2A29] tracking-tight">特教工具箱</h2>
+                  <span class="text-xs font-bold px-2.5 py-0.5 rounded-md bg-[#F9F2F1] text-[#7E4842] border border-[#EAD8D6]">
                     專用整合
                   </span>
                 </div>
-                <p class="text-xs sm:text-sm text-slate-500 mt-0.5">運用專業工具與自動化輔助，提升特教教學與行政效率。</p>
+                <p class="text-xs sm:text-sm text-[#6E6A66] mt-0.5">運用專業工具與自動化輔助，提升特教教學與行政效率。</p>
               </div>
             </div>
             <button type="button" id="btnLockSpecialTools"
-              class="px-4 py-2 rounded-xl bg-white hover:bg-orange-50 border border-orange-200 text-slate-600 font-bold text-xs transition flex items-center gap-1.5 shadow-2xs">
+              class="px-4 py-2 rounded-lg bg-[#FAF8F5] hover:bg-[#F3EFEA] border border-[#E2DCD3] text-[#5C5753] font-bold text-xs transition flex items-center gap-1.5">
               <span>🔒</span>
               <span>重新上鎖</span>
             </button>
           </div>
 
-          <!-- 1. 一般教學與行政核心工具（一列 4 欄網格） -->
+          <!-- 1. 一般教學與行政核心工具 -->
           ${generalTools.length > 0 ? `
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
               ${generalTools.map(tool => renderToolCardHtml(tool)).join('')}
             </div>
           ` : ''}
 
-          <!-- 2. 🌟 動態分類折疊抽屜群（GAS 傳來什麼分類，就自動長出什麼抽屜） -->
+          <!-- 2. 動態分類折疊抽屜群 -->
           <div class="space-y-4">
             ${otherCategories.map(catKey => {
               const meta = categoryMeta[catKey] || { name: catKey, icon: "📁", subtitle: `${catKey} 專屬相關工具` };
@@ -927,33 +923,31 @@
               const isOpen = !!openDrawersState[catKey];
 
               return `
-                <div class="border-2 border-amber-200 bg-amber-50/30 rounded-3xl overflow-hidden transition shadow-xs">
-                  <!-- 抽屜點擊標題列 -->
+                <div class="border border-[#E8E3DC] bg-[#FAF8F5] rounded-xl overflow-hidden transition">
                   <button type="button" data-drawer-cat="${catKey}"
-                    class="drawer-toggle-btn w-full px-6 py-4 flex items-center justify-between bg-gradient-to-r from-amber-100/60 via-orange-50/50 to-white hover:bg-amber-100/80 transition text-left cursor-pointer">
+                    class="drawer-toggle-btn w-full px-6 py-4 flex items-center justify-between bg-[#FAF8F5] hover:bg-[#F3EFEA] transition text-left cursor-pointer">
                     <div class="flex items-center gap-3">
-                      <span class="w-9 h-9 rounded-xl bg-amber-200/70 text-amber-900 flex items-center justify-center text-lg shadow-2xs">
+                      <span class="w-9 h-9 rounded-lg bg-white border border-[#E8E3DC] text-[#B06E66] flex items-center justify-center text-base">
                         ${meta.icon}
                       </span>
                       <div>
                         <div class="flex items-center gap-2">
-                          <h3 class="font-black text-slate-900 text-sm sm:text-base">${meta.name}</h3>
-                          <span class="text-[11px] font-bold px-2 py-0.5 rounded-full bg-amber-200 text-amber-900">
+                          <h3 class="font-bold text-[#2C2A29] text-sm sm:text-base">${meta.name}</h3>
+                          <span class="text-[11px] font-bold px-2 py-0.5 rounded-md bg-[#F9F2F1] text-[#7E4842] border border-[#EAD8D6]">
                             ${catTools.length} 個工具
                           </span>
                         </div>
-                        <p class="text-xs text-slate-500 mt-0.5">${meta.subtitle}</p>
+                        <p class="text-xs text-[#6E6A66] mt-0.5">${meta.subtitle}</p>
                       </div>
                     </div>
                     
-                    <div class="flex items-center gap-2 text-amber-900 font-bold text-xs">
+                    <div class="flex items-center gap-2 text-[#B06E66] font-bold text-xs">
                       <span class="drawer-text">${isOpen ? "收合工具" : "展開工具"}</span>
                       <span class="drawer-arrow transform transition duration-200 ${isOpen ? "rotate-180" : ""}">▼</span>
                     </div>
                   </button>
 
-                  <!-- 抽屜內容容器 -->
-                  <div id="drawer-container-${catKey}" class="${isOpen ? "block" : "hidden"} p-6 border-t border-amber-200 bg-white">
+                  <div id="drawer-container-${catKey}" class="${isOpen ? "block" : "hidden"} p-6 border-t border-[#E8E3DC] bg-white">
                     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
                       ${catTools.map(tool => renderToolCardHtml(tool)).join('')}
                     </div>
@@ -1012,35 +1006,35 @@
 
       return `
         <div class="w-full space-y-6">
-          <section class="warm-card p-6 sm:p-8 space-y-6 w-full">
-            <div class="flex flex-wrap items-center justify-between gap-4 border-b border-teal-100 pb-4">
-              <div class="flex items-center gap-3">
-                <span class="w-12 h-12 rounded-2xl bg-amber-100 border border-amber-300 flex items-center justify-center text-2xl">📋</span>
+          <section class="warm-card p-6 sm:p-10 space-y-7 w-full">
+            <div class="flex flex-wrap items-center justify-between gap-4 border-b border-[#ECE7DF] pb-5">
+              <div class="flex items-center gap-3.5">
+                <span class="w-11 h-11 rounded-xl bg-[#F9F2F1] border border-[#EAD8D6] flex items-center justify-center text-xl">📋</span>
                 <div>
-                  <h2 class="text-xl sm:text-2xl font-black text-slate-900">新個案鑑定安置提報專區</h2>
+                  <h2 class="text-xl sm:text-2xl font-bold text-[#2C2A29]">新個案鑑定安置提報專區</h2>
                 </div>
               </div>
               <a href="${ref.manualPdf.url}" target="_blank" rel="noopener noreferrer"
-                class="px-4 py-2.5 rounded-2xl bg-teal-50 hover:bg-teal-100 text-teal-900 border-2 border-teal-200 font-bold text-xs sm:text-sm transition flex items-center gap-1.5">
+                class="px-4 py-2.5 rounded-lg bg-[#FAF8F5] hover:bg-[#F3EFEA] text-[#2C2A29] border border-[#E2DCD3] font-bold text-xs sm:text-sm transition flex items-center gap-1.5">
                 <span>📕 鑑定辦法說明手冊.pdf ↗</span>
               </a>
             </div>
 
-            <div class="flex flex-wrap gap-2.5 border-b border-teal-100 pb-4">
+            <div class="flex flex-wrap gap-2.5 border-b border-[#ECE7DF] pb-5">
               <button type="button" data-referral-subtab="quick"
-                class="referral-subtab-btn flex items-center gap-2 px-5 py-3 rounded-2xl font-black text-xs sm:text-sm border-2 transition ${
+                class="referral-subtab-btn flex items-center gap-2 px-5 py-2.5 rounded-lg font-bold text-xs sm:text-sm border transition ${
                   activeReferralSubtab === "quick"
-                    ? "bg-amber-500 text-white border-amber-600 shadow-md"
-                    : "bg-amber-50/60 hover:bg-amber-100 text-amber-950 border-amber-200"
+                    ? "bg-[#B06E66] text-white border-[#B06E66] shadow-2xs"
+                    : "bg-[#FAF8F5] hover:bg-[#F3EFEA] text-[#5C5753] border-[#E8E3DC]"
                 }">
                 <span>🚀</span>
                 <span>線上提報與應備表件下載</span>
               </button>
               <button type="button" data-referral-subtab="criteria"
-                class="referral-subtab-btn flex items-center gap-2 px-5 py-3 rounded-2xl font-black text-xs sm:text-sm border-2 transition ${
+                class="referral-subtab-btn flex items-center gap-2 px-5 py-2.5 rounded-lg font-bold text-xs sm:text-sm border transition ${
                   activeReferralSubtab === "criteria"
-                    ? "bg-teal-600 text-white border-teal-700 shadow-md"
-                    : "bg-teal-50/60 hover:bg-teal-100 text-teal-950 border-teal-200"
+                    ? "bg-[#B06E66] text-white border-[#B06E66] shadow-2xs"
+                    : "bg-[#FAF8F5] hover:bg-[#F3EFEA] text-[#5C5753] border-[#E8E3DC]"
                 }">
                 <span>🔍</span>
                 <span>各障別課堂觀察重點與初篩</span>
@@ -1048,37 +1042,38 @@
             </div>
 
             ${activeReferralSubtab === "quick" ? `
-              <div class="space-y-6">
-                <div class="bg-gradient-to-r from-amber-50 via-orange-50/60 to-amber-100/70 border-3 border-amber-400 rounded-3xl p-6 sm:p-8 flex flex-col md:flex-row items-start md:items-center justify-between gap-6 shadow-lg relative overflow-hidden">
-                  <div class="flex items-start sm:items-center gap-4 z-10">
-                    <div class="w-16 h-16 rounded-2xl bg-amber-500 text-white flex items-center justify-center text-3xl shadow-md shrink-0">
+              <div class="space-y-8">
+                <!-- 主視覺行動呼籲橫幅 -->
+                <div class="bg-[#F9F2F1] border-l-4 border-[#B06E66] rounded-xl p-6 sm:p-8 flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
+                  <div class="flex items-start sm:items-center gap-4">
+                    <div class="w-14 h-14 rounded-xl bg-white border border-[#EAD8D6] text-[#B06E66] flex items-center justify-center text-2xl shrink-0">
                       📝
                     </div>
                     <div class="space-y-1.5">
-                      <div class="inline-flex items-center gap-1.5 text-xs font-black px-3 py-1 rounded-full bg-amber-200 text-amber-950 border border-amber-300">
-                        <span>🔔</span>
-                        <span>全校導師提報入口</span>
-                      </div>
-                      <h3 class="text-xl sm:text-2xl font-black text-slate-900 tracking-tight">
+                      <span class="inline-block text-xs font-bold px-2.5 py-0.5 rounded-md bg-white text-[#7E4842] border border-[#EAD8D6]">
+                        🔔 全校導師提報入口
+                      </span>
+                      <h3 class="text-xl sm:text-2xl font-bold text-[#2C2A29] tracking-tight">
                         特教鑑定安置學生線上提報系統
                       </h3>
-                      <p class="text-xs sm:text-sm text-slate-700 leading-relaxed max-w-2xl font-medium">
+                      <p class="text-xs sm:text-sm text-[#5C5753] leading-relaxed max-w-2xl">
                         若導師觀察到學生疑似有特殊教育需求，請先取得家長同意後點擊右方按鈕前往線上填報。
                       </p>
                     </div>
                   </div>
-                  <div class="shrink-0 w-full md:w-auto z-10">
+                  <div class="shrink-0 w-full md:w-auto">
                     <a href="${REPORT_SYSTEM_URL}" target="_blank" rel="noopener noreferrer"
-                      class="flex items-center justify-center gap-2 w-full md:w-auto px-8 py-4 rounded-2xl bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-600 hover:to-orange-600 text-white font-black text-sm sm:text-base shadow-md transition transform hover:-translate-y-0.5">
+                      class="flex items-center justify-center gap-2 w-full md:w-auto px-7 py-3.5 rounded-lg bg-[#B06E66] hover:bg-[#96574F] text-white font-bold text-sm sm:text-base shadow-xs transition">
                       <span>立即前往線上提報系統</span>
-                      <span class="text-lg">↗</span>
+                      <span>→</span>
                     </a>
                   </div>
                 </div>
 
-                <div class="space-y-4 pt-2">
+                <!-- 放大版四大障別應備紙本佐證資料 -->
+                <div class="space-y-4">
                   <div class="flex items-center justify-between">
-                    <h3 class="text-base sm:text-lg font-black text-slate-900 flex items-center gap-2">
+                    <h3 class="text-base sm:text-lg font-bold text-[#2C2A29] flex items-center gap-2">
                       <span>📑</span>
                       <span>四大障別：應備紙本佐證資料與雲端表件下載</span>
                     </h3>
@@ -1086,30 +1081,30 @@
 
                   <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
                     ${ref.cloudFolders.map(folder => `
-                      <div class="p-6 rounded-3xl bg-white border-2 border-teal-100 hover:border-teal-300 transition shadow-xs flex flex-col justify-between gap-4">
-                        <div class="space-y-3.5">
-                          <div class="flex items-center justify-between border-b border-teal-50 pb-3">
+                      <div class="p-6 sm:p-7 rounded-xl bg-white border border-[#E8E3DC] hover:border-[#D4C8BC] transition flex flex-col justify-between gap-5">
+                        <div class="space-y-4">
+                          <div class="flex items-center justify-between border-b border-[#F0ECE6] pb-3.5">
                             <div class="flex items-center gap-2.5">
                               <span class="text-2xl sm:text-3xl">${folder.icon}</span>
-                              <h4 class="font-black text-slate-900 text-lg sm:text-xl">${folder.name}</h4>
+                              <h4 class="font-bold text-[#2C2A29] text-lg sm:text-xl">${folder.name}</h4>
                             </div>
-                            <span class="text-xs sm:text-sm font-bold px-3 py-1 rounded-full bg-teal-50 text-teal-800 border border-teal-200">${folder.categoryBadge}</span>
+                            <span class="text-xs sm:text-sm font-bold px-3 py-1 rounded-md bg-[#F9F2F1] text-[#7E4842] border border-[#EAD8D6]">${folder.categoryBadge}</span>
                           </div>
 
-                          <div class="bg-teal-50/60 p-4 sm:p-5 rounded-2xl border border-teal-100/80 space-y-2.5">
-                            <span class="text-sm sm:text-base font-black text-teal-900 block">📌 導師應備紙本佐證：</span>
-                            <ul class="text-sm sm:text-base text-slate-800 space-y-2 font-medium">
+                          <div class="bg-[#FAF8F5] p-4 sm:p-5 rounded-xl border-l-3 border-[#B06E66] space-y-2.5">
+                            <span class="text-sm sm:text-base font-bold text-[#7E4842] block">📌 導師應備紙本佐證：</span>
+                            <ul class="text-sm sm:text-base text-[#3D3A38] space-y-2">
                               ${folder.requiredPapers.map(paper => `<li class="leading-relaxed">• ${paper}</li>`).join('')}
                             </ul>
                           </div>
                         </div>
 
-                        <div class="pt-2 border-t border-slate-100 flex items-center gap-2.5">
+                        <div class="pt-3 border-t border-[#F0ECE6] flex items-center gap-2.5">
                           <a href="${folder.url}" target="_blank" rel="noopener noreferrer"
-                            class="flex-1 text-center py-3 px-4 rounded-xl bg-teal-600 hover:bg-teal-700 text-white font-bold text-xs sm:text-sm transition shadow-2xs">
+                            class="flex-1 text-center py-3 px-4 rounded-lg bg-[#B06E66] hover:bg-[#96574F] text-white font-bold text-xs sm:text-sm transition">
                             📂 下載提報表件與觀察表 ↗
                           </a>
-                          <button type="button" class="btn-quick-legal shrink-0 py-3 px-4 rounded-xl bg-teal-50 hover:bg-teal-100 text-teal-900 border border-teal-200 text-xs sm:text-sm font-bold"
+                          <button type="button" class="btn-quick-legal shrink-0 py-3 px-4 rounded-lg bg-[#FAF8F5] hover:bg-[#F3EFEA] text-[#5C5753] border border-[#E2DCD3] text-xs sm:text-sm font-bold transition"
                             data-crit-id="${folder.id}">
                             📜 查看法規
                           </button>
@@ -1129,10 +1124,10 @@
                       const isSelected = cat.id === activeCriteriaId;
                       return `
                         <button type="button" data-crit-id="${cat.id}"
-                          class="crit-tab-btn flex items-center gap-1.5 px-4 py-2.5 rounded-2xl font-black text-xs sm:text-sm border-2 transition ${
+                          class="crit-tab-btn flex items-center gap-1.5 px-4 py-2 rounded-lg font-bold text-xs sm:text-sm border transition ${
                             isSelected
-                              ? "bg-teal-600 text-white border-teal-700 shadow-xs"
-                              : "bg-white hover:bg-teal-50 text-slate-700 border-teal-100"
+                              ? "bg-[#B06E66] text-white border-[#B06E66]"
+                              : "bg-[#FAF8F5] hover:bg-[#F3EFEA] text-[#5C5753] border-[#E8E3DC]"
                           }">
                           <span>${cat.icon}</span>
                           <span>${cat.shortName}</span>
@@ -1141,30 +1136,30 @@
                     }).join("")}
                   </div>
 
-                  <button type="button" id="btnOpenLegalModal" class="px-4 py-2 rounded-2xl bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold text-xs transition flex items-center gap-1.5">
+                  <button type="button" id="btnOpenLegalModal" class="px-4 py-2 rounded-lg bg-[#FAF8F5] hover:bg-[#F3EFEA] text-[#5C5753] border border-[#E2DCD3] font-bold text-xs transition flex items-center gap-1.5">
                     <span>📜</span>
                     <span>查看法規條文原文（彈窗）</span>
                   </button>
                 </div>
 
-                <div class="warm-card p-6 border-2 border-teal-100 space-y-4">
-                  <div class="flex items-center justify-between border-b border-teal-100 pb-3">
-                    <div class="flex items-center gap-2">
+                <div class="p-6 sm:p-8 rounded-xl bg-white border border-[#E8E3DC] space-y-5">
+                  <div class="flex flex-wrap items-center justify-between gap-2 border-b border-[#ECE7DF] pb-4">
+                    <div class="flex items-center gap-2.5">
                       <span class="text-2xl">${currentCrit.icon}</span>
-                      <h4 class="text-base sm:text-lg font-black text-teal-950">
+                      <h4 class="text-base sm:text-lg font-bold text-[#2C2A29]">
                         ${currentCrit.title}
                       </h4>
                     </div>
-                    <span class="text-xs font-bold px-3 py-1 rounded-full bg-teal-50 text-teal-800 border border-teal-200">
+                    <span class="text-xs font-bold px-3 py-1 rounded-md bg-[#F9F2F1] text-[#7E4842] border border-[#EAD8D6]">
                       普通班觀察初篩面向
                     </span>
                   </div>
 
                   <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                     ${currentCrit.observationGroups.map(grp => `
-                      <div class="bg-slate-50/80 rounded-2xl border border-slate-200 p-4 space-y-2">
-                        <h5 class="font-black text-teal-900 text-xs sm:text-sm border-b border-slate-200 pb-1.5">${grp.groupTitle}</h5>
-                        <ul class="space-y-1.5 text-xs sm:text-sm text-slate-700">
+                      <div class="bg-[#FAF8F5] rounded-xl border border-[#E8E3DC] p-5 space-y-2.5">
+                        <h5 class="font-bold text-[#7E4842] text-sm border-b border-[#E8E3DC] pb-2">${grp.groupTitle}</h5>
+                        <ul class="space-y-1.5 text-xs sm:text-sm text-[#3D3A38]">
                           ${grp.items.map(item => `<li class="leading-relaxed">• ${item}</li>`).join("")}
                         </ul>
                       </div>
@@ -1172,30 +1167,30 @@
                   </div>
 
                   <div class="grid grid-cols-1 lg:grid-cols-2 gap-4 pt-2">
-                    <div class="bg-rose-50/60 border border-rose-200 rounded-2xl p-4 space-y-2">
-                      <div class="text-xs font-black text-rose-900 flex items-center gap-1.5">
+                    <div class="bg-[#F9F2F1]/70 border-l-3 border-[#B84A4A] rounded-xl p-4 space-y-2">
+                      <div class="text-xs font-bold text-[#8E3838] flex items-center gap-1.5">
                         <span>🚫</span>
                         <span>排他因素（須先排除下列主要原因）：</span>
                       </div>
-                      <ul class="space-y-1 text-xs text-slate-700">
+                      <ul class="space-y-1 text-xs sm:text-sm text-[#4A4642]">
                         ${currentCrit.exclusionFactors.map(ex => `<li class="leading-relaxed">• ${ex}</li>`).join("")}
                       </ul>
                     </div>
 
-                    <div class="bg-emerald-50/60 border border-emerald-200 rounded-2xl p-4 space-y-2">
-                      <div class="text-xs font-black text-emerald-900 flex items-center gap-1.5">
+                    <div class="bg-[#F2F5F2] border-l-3 border-[#6B8271] rounded-xl p-4 space-y-2">
+                      <div class="text-xs font-bold text-[#495C4E] flex items-center gap-1.5">
                         <span>✅</span>
-                        <span>轉介前介入（RTI）與應備佐證：</span>
+                        <span>轉介前介入與應備佐證：</span>
                       </div>
-                      <ul class="space-y-1 text-xs text-slate-700">
+                      <ul class="space-y-1 text-xs sm:text-sm text-[#4A4642]">
                         ${currentCrit.referralRequirements.map(req => `<li class="leading-relaxed">• ${req}</li>`).join("")}
                       </ul>
                     </div>
                   </div>
 
-                  <div class="pt-3 border-t border-teal-100 flex justify-end">
+                  <div class="pt-4 border-t border-[#ECE7DF] flex justify-end">
                     <a href="${currentCrit.folderUrl}" target="_blank" rel="noopener noreferrer"
-                      class="px-5 py-2.5 rounded-xl bg-teal-600 hover:bg-teal-700 text-white font-bold text-xs transition">
+                      class="px-5 py-2.5 rounded-lg bg-[#B06E66] hover:bg-[#96574F] text-white font-bold text-xs sm:text-sm transition">
                       📂 下載此障別提報表件 ↗
                     </a>
                   </div>
@@ -1210,45 +1205,45 @@
 
     function renderCommunicationView() {
       return `
-        <section class="warm-card p-6 sm:p-8 space-y-6 w-full">
-          <div class="border-b border-teal-100 pb-4 flex items-center gap-3">
-            <span class="w-12 h-12 rounded-2xl bg-teal-100 border border-teal-300 flex items-center justify-center text-2xl">🏫</span>
+        <section class="warm-card p-6 sm:p-10 space-y-7 w-full">
+          <div class="border-b border-[#ECE7DF] pb-5 flex items-center gap-3.5">
+            <span class="w-11 h-11 rounded-xl bg-[#F9F2F1] border border-[#EAD8D6] flex items-center justify-center text-xl">🏫</span>
             <div>
-              <h2 class="text-xl sm:text-2xl font-black text-teal-950">校內資源班三大運作模式</h2>
-              <p class="text-xs sm:text-sm text-slate-500">提供普通班導師與任課教師了解資源班學生上課型態與課程安排</p>
+              <h2 class="text-xl sm:text-2xl font-bold text-[#2C2A29]">校內資源班三大運作模式</h2>
+              <p class="text-xs sm:text-sm text-[#6E6A66] mt-0.5">提供普通班導師與任課教師了解資源班學生上課型態與課程安排</p>
             </div>
           </div>
 
           <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
-            <div class="p-6 rounded-2xl bg-teal-50/50 border-2 border-teal-100 space-y-3">
+            <div class="p-6 rounded-xl bg-[#FAF8F5] border border-[#E8E3DC] space-y-3">
               <div class="flex items-center justify-between">
-                <span class="text-xs font-bold px-3 py-1 rounded-full bg-white border border-teal-200 text-teal-800">抽離式服務</span>
-                <span class="text-2xl">🎒</span>
+                <span class="text-xs font-bold px-2.5 py-1 rounded-md bg-white border border-[#EAD8D6] text-[#7E4842]">抽離式服務</span>
+                <span class="text-xl">🎒</span>
               </div>
-              <h4 class="font-black text-slate-900 text-base sm:text-lg">抽離課程</h4>
-              <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
+              <h4 class="font-bold text-[#2C2A29] text-base sm:text-lg">抽離課程</h4>
+              <p class="text-xs sm:text-sm text-[#5C5753] leading-relaxed">
                 學生於普通班的特定學科（如國語、數學課）至資源班上課，由特教教師針對學生學習能力進行教材簡化與個別化教學調整。
               </p>
             </div>
 
-            <div class="p-6 rounded-2xl bg-teal-50/50 border-2 border-teal-100 space-y-3">
+            <div class="p-6 rounded-xl bg-[#FAF8F5] border border-[#E8E3DC] space-y-3">
               <div class="flex items-center justify-between">
-                <span class="text-xs font-bold px-3 py-1 rounded-full bg-white border border-teal-200 text-teal-800">外加式服務</span>
-                <span class="text-2xl">🧩</span>
+                <span class="text-xs font-bold px-2.5 py-1 rounded-md bg-white border border-[#EAD8D6] text-[#7E4842]">外加式服務</span>
+                <span class="text-xl">🧩</span>
               </div>
-              <h4 class="font-black text-slate-900 text-base sm:text-lg">外加課程</h4>
-              <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
+              <h4 class="font-bold text-[#2C2A29] text-base sm:text-lg">外加課程</h4>
+              <p class="text-xs sm:text-sm text-[#5C5753] leading-relaxed">
                 利用早自習、午休、課後或彈性課程時間至資源班上課，主要針對特殊需求領域（如社交技巧、學習策略、情緒行為引導）進行強化支持。
               </p>
             </div>
 
-            <div class="p-6 rounded-2xl bg-teal-50/50 border-2 border-teal-100 space-y-3">
+            <div class="p-6 rounded-xl bg-[#FAF8F5] border border-[#E8E3DC] space-y-3">
               <div class="flex items-center justify-between">
-                <span class="text-xs font-bold px-3 py-1 rounded-full bg-white border border-teal-200 text-teal-800">間接服務</span>
-                <span class="text-2xl">🤝</span>
+                <span class="text-xs font-bold px-2.5 py-1 rounded-md bg-white border border-[#EAD8D6] text-[#7E4842]">間接服務</span>
+                <span class="text-xl">🤝</span>
               </div>
-              <h4 class="font-black text-slate-900 text-base sm:text-lg">間接服務與諮詢</h4>
-              <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
+              <h4 class="font-bold text-[#2C2A29] text-base sm:text-lg">間接服務與諮詢</h4>
+              <p class="text-xs sm:text-sm text-[#5C5753] leading-relaxed">
                 特教老師與普通班導師、科任教師保持密切聯繫，提供課堂行為輔導策略建議、評量調整諮詢與特教相關支持。
               </p>
             </div>
@@ -1264,18 +1259,18 @@
         return `
           <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
             ${adv.featuredCloudDocs.map(doc => `
-              <div class="p-5 rounded-2xl bg-teal-50/50 border-2 border-teal-100 flex flex-col justify-between gap-4">
-                <div class="space-y-2">
+              <div class="p-6 rounded-xl bg-[#FAF8F5] border border-[#E8E3DC] flex flex-col justify-between gap-4">
+                <div class="space-y-2.5">
                   <div class="flex items-center justify-between">
-                    <span class="text-xs font-bold px-2.5 py-0.5 rounded-full bg-white border border-teal-200 text-teal-800">${doc.tag}</span>
-                    <span class="text-2xl">${doc.icon}</span>
+                    <span class="text-xs font-bold px-2.5 py-0.5 rounded-md bg-white border border-[#EAD8D6] text-[#7E4842]">${doc.tag}</span>
+                    <span class="text-xl">${doc.icon}</span>
                   </div>
-                  <h4 class="font-black text-slate-900 text-base leading-snug">${doc.title}</h4>
-                  <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">${doc.description}</p>
+                  <h4 class="font-bold text-[#2C2A29] text-base leading-snug">${doc.title}</h4>
+                  <p class="text-xs sm:text-sm text-[#6E6A66] leading-relaxed">${doc.description}</p>
                 </div>
-                <div class="pt-3 border-t border-teal-100">
+                <div class="pt-3 border-t border-[#E8E3DC]">
                   <a href="${doc.url}" target="_blank" rel="noopener noreferrer"
-                    class="block text-center py-2.5 px-3 rounded-xl bg-teal-600 hover:bg-teal-700 text-white font-bold text-xs transition">
+                    class="block text-center py-2.5 px-3 rounded-lg bg-[#B06E66] hover:bg-[#96574F] text-white font-bold text-xs transition">
                     開啟雲端檔案 ↗
                   </a>
                 </div>
@@ -1289,19 +1284,19 @@
         return `
           <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
             ${adv.articles.map(art => `
-              <div class="p-5 rounded-2xl bg-amber-50/50 border-2 border-amber-200 flex flex-col justify-between gap-4">
-                <div class="space-y-2">
+              <div class="p-6 rounded-xl bg-[#FAF8F5] border border-[#E8E3DC] flex flex-col justify-between gap-4">
+                <div class="space-y-2.5">
                   <div class="flex items-center justify-between">
-                    <span class="text-xs font-bold text-amber-900 bg-white px-2.5 py-0.5 rounded-full border border-amber-200">
+                    <span class="text-xs font-bold text-[#7E4842] bg-white px-2.5 py-0.5 rounded-md border border-[#EAD8D6]">
                       ${art.category} · ${art.author}
                     </span>
-                    <span class="text-2xl">${art.icon}</span>
+                    <span class="text-xl">${art.icon}</span>
                   </div>
-                  <h5 class="font-black text-slate-900 text-base leading-snug">${art.title}</h5>
-                  <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">${art.summary}</p>
+                  <h5 class="font-bold text-[#2C2A29] text-base leading-snug">${art.title}</h5>
+                  <p class="text-xs sm:text-sm text-[#6E6A66] leading-relaxed">${art.summary}</p>
                 </div>
                 <a href="${art.url}" target="_blank" rel="noopener noreferrer"
-                  class="w-full text-center py-2.5 px-4 rounded-xl bg-amber-500 hover:bg-amber-600 text-white font-bold text-xs sm:text-sm transition">
+                  class="w-full text-center py-2.5 px-4 rounded-lg bg-[#B06E66] hover:bg-[#96574F] text-white font-bold text-xs sm:text-sm transition">
                   閱讀王意中心理師文章 ↗
                 </a>
               </div>
@@ -1313,21 +1308,21 @@
       if (activeAdvocacySubtab === "therapists") {
         return `
           <div class="space-y-4">
-            <div class="bg-teal-50/70 border border-teal-200 rounded-2xl p-4">
-              <div class="text-xs font-black text-teal-800 mb-1">📜 專業團隊法規依據</div>
-              <p class="text-xs sm:text-sm text-slate-700 leading-relaxed">${adv.therapistsLegalBasis}</p>
+            <div class="bg-[#F9F2F1] border-l-3 border-[#B06E66] rounded-xl p-4">
+              <div class="text-xs font-bold text-[#7E4842] mb-1">📜 專業團隊法規依據</div>
+              <p class="text-xs sm:text-sm text-[#4A4642] leading-relaxed">${adv.therapistsLegalBasis}</p>
             </div>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
               ${adv.therapists.map(th => `
-                <div class="p-5 rounded-2xl bg-white border-2 border-teal-100 space-y-3">
+                <div class="p-5 rounded-xl bg-white border border-[#E8E3DC] space-y-3">
                   <div class="flex items-center gap-3">
-                    <span class="w-11 h-11 rounded-2xl bg-teal-100 text-2xl flex items-center justify-center shrink-0">${th.icon}</span>
+                    <span class="w-10 h-10 rounded-xl bg-[#F9F2F1] border border-[#EAD8D6] text-xl flex items-center justify-center shrink-0">${th.icon}</span>
                     <div>
-                      <h4 class="font-black text-teal-950 text-base">${th.role}</h4>
-                      <p class="text-xs text-slate-500 mt-0.5">${th.targetStudents}</p>
+                      <h4 class="font-bold text-[#2C2A29] text-base">${th.role}</h4>
+                      <p class="text-xs text-[#6E6A66] mt-0.5">${th.targetStudents}</p>
                     </div>
                   </div>
-                  <ul class="space-y-1.5 text-xs sm:text-sm text-slate-700 bg-teal-50/40 p-3.5 rounded-xl border border-teal-100">
+                  <ul class="space-y-1.5 text-xs sm:text-sm text-[#3D3A38] bg-[#FAF8F5] p-3.5 rounded-lg border border-[#ECE7DF]">
                     ${th.services.map(s => `<li class="leading-relaxed">• ${s}</li>`).join("")}
                   </ul>
                 </div>
@@ -1340,17 +1335,17 @@
       if (activeAdvocacySubtab === "assistants") {
         return `
           <div class="space-y-4">
-            <div class="bg-teal-50/70 border border-teal-200 rounded-2xl p-4">
-              <p class="text-xs sm:text-sm text-teal-950 font-bold leading-relaxed">${adv.assistants.intro}</p>
+            <div class="bg-[#F9F2F1] border-l-3 border-[#B06E66] rounded-xl p-4">
+              <p class="text-xs sm:text-sm text-[#2C2A29] font-bold leading-relaxed">${adv.assistants.intro}</p>
             </div>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
               ${adv.assistants.duties.map(d => `
-                <div class="p-5 rounded-2xl bg-white border-2 border-teal-100 space-y-2.5">
+                <div class="p-5 rounded-xl bg-white border border-[#E8E3DC] space-y-2.5">
                   <div class="flex items-center gap-2">
-                    <span class="text-xl">${d.icon}</span>
-                    <h4 class="font-black text-teal-950 text-sm sm:text-base">${d.title}</h4>
+                    <span class="text-lg">${d.icon}</span>
+                    <h4 class="font-bold text-[#2C2A29] text-sm sm:text-base">${d.title}</h4>
                   </div>
-                  <ul class="space-y-1.5 text-xs sm:text-sm text-slate-700 bg-slate-50 p-3.5 rounded-xl">
+                  <ul class="space-y-1.5 text-xs sm:text-sm text-[#3D3A38] bg-[#FAF8F5] p-3.5 rounded-lg border border-[#ECE7DF]">
                     ${d.items.map(it => `<li class="leading-relaxed">• ${it}</li>`).join("")}
                   </ul>
                 </div>
@@ -1366,15 +1361,15 @@
           <div class="space-y-6">
             <div class="space-y-3">
               <div class="flex flex-wrap items-center justify-between gap-2">
-                <h4 class="font-black text-teal-950 text-sm sm:text-base">🔍 行為問題環境因素與功能分析（ABC 模式）</h4>
-                <span class="text-xs text-slate-500">${bs.abcSource}</span>
+                <h4 class="font-bold text-[#2C2A29] text-sm sm:text-base">🔍 行為問題環境因素與功能分析</h4>
+                <span class="text-xs text-[#7D7873]">${bs.abcSource}</span>
               </div>
               <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
                 ${bs.abcAnalysis.map(item => `
-                  <div class="bg-teal-50/50 rounded-2xl border-2 border-teal-100 p-4 space-y-2">
-                    <span class="text-xs font-bold px-2.5 py-0.5 rounded-full bg-white border border-teal-200 text-teal-800">${item.badge}</span>
-                    <h5 class="font-black text-slate-900 text-sm sm:text-base pt-1">${item.stage}</h5>
-                    <ul class="space-y-1.5 text-xs sm:text-sm text-slate-700 leading-relaxed">
+                  <div class="bg-[#FAF8F5] rounded-xl border border-[#E8E3DC] p-5 space-y-2.5">
+                    <span class="text-xs font-bold px-2.5 py-0.5 rounded-md bg-white border border-[#EAD8D6] text-[#7E4842]">${item.badge}</span>
+                    <h5 class="font-bold text-[#2C2A29] text-sm sm:text-base pt-1">${item.stage}</h5>
+                    <ul class="space-y-1.5 text-xs sm:text-sm text-[#4A4642] leading-relaxed">
                       ${item.points.map(p => `<li>• ${p}</li>`).join("")}
                     </ul>
                   </div>
@@ -1382,19 +1377,19 @@
               </div>
             </div>
 
-            <div class="space-y-3 pt-4 border-t border-teal-100">
+            <div class="space-y-3 pt-4 border-t border-[#ECE7DF]">
               <div class="flex flex-wrap items-center justify-between gap-2">
-                <h4 class="font-black text-teal-950 text-sm sm:text-base">🛡️ 學生爆發性行為三階段危機處理流程</h4>
-                <span class="text-xs text-slate-500">${bs.crisisSource}</span>
+                <h4 class="font-bold text-[#2C2A29] text-sm sm:text-base">🛡️ 學生爆發性行為三階段危機處理流程</h4>
+                <span class="text-xs text-[#7D7873]">${bs.crisisSource}</span>
               </div>
               <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
                 ${bs.crisisPhases.map(cp => `
-                  <div class="bg-amber-50/50 rounded-2xl border-2 border-amber-200 p-4 space-y-2">
-                    <div class="font-black text-amber-950 text-sm sm:text-base">${cp.phase}</div>
-                    <div class="text-xs font-bold text-amber-800 bg-white px-2.5 py-1 rounded-lg border border-amber-200">
+                  <div class="bg-[#F9F2F1]/60 rounded-xl border border-[#EAD8D6] p-5 space-y-2.5">
+                    <div class="font-bold text-[#7E4842] text-sm sm:text-base">${cp.phase}</div>
+                    <div class="text-xs font-bold text-[#5C5753] bg-white px-2.5 py-1.5 rounded-lg border border-[#E8E3DC]">
                       目標：${cp.goal}
                     </div>
-                    <ul class="space-y-1.5 text-xs sm:text-sm text-slate-700 pt-1">
+                    <ul class="space-y-1.5 text-xs sm:text-sm text-[#4A4642] pt-1">
                       ${cp.steps.map(st => `<li class="leading-relaxed">▸ ${st}</li>`).join("")}
                     </ul>
                   </div>
@@ -1413,15 +1408,14 @@
 
         return `
           <div class="space-y-4">
-            <div class="bg-gradient-to-r from-teal-600 to-emerald-600 text-white rounded-2xl p-5 flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
+            <div class="bg-[#F9F2F1] border-l-4 border-[#B06E66] rounded-xl p-5 flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
               <div class="space-y-1">
-                <span class="text-xs font-bold text-teal-100">📂 Positive Behavior Support (PBS)</span>
-                <h4 class="text-base sm:text-lg font-black">${pbs.title}</h4>
-                <p class="text-xs sm:text-sm text-teal-50">${pbs.description}</p>
+                <h4 class="text-base sm:text-lg font-bold text-[#2C2A29]">${pbs.title}</h4>
+                <p class="text-xs sm:text-sm text-[#5C5753]">${pbs.description}</p>
               </div>
               <div class="shrink-0">
                 <a href="${pbs.folderUrl}" target="_blank" rel="noopener noreferrer"
-                  class="inline-block px-4 py-2.5 rounded-xl bg-amber-400 hover:bg-amber-300 text-slate-950 font-black text-xs sm:text-sm transition">
+                  class="inline-block px-4 py-2.5 rounded-lg bg-[#B06E66] hover:bg-[#96574F] text-white font-bold text-xs sm:text-sm transition">
                   開啟雲端總資料夾 ↗
                 </a>
               </div>
@@ -1429,37 +1423,37 @@
 
             <div class="flex flex-wrap gap-2">
               <button type="button" data-pbs-filter="all"
-                class="pbs-filter-btn px-3.5 py-1.5 rounded-xl text-xs font-bold border transition ${
-                  activePbsFilter === "all" ? "bg-teal-600 text-white border-teal-700" : "bg-white text-slate-600 border-teal-200"
+                class="pbs-filter-btn px-3.5 py-1.5 rounded-lg text-xs font-bold border transition ${
+                  activePbsFilter === "all" ? "bg-[#B06E66] text-white border-[#B06E66]" : "bg-[#FAF8F5] text-[#5C5753] border-[#E8E3DC]"
                 }">
                 全部表件 (${pbs.files.length})
               </button>
               <button type="button" data-pbs-filter="word"
-                class="pbs-filter-btn px-3.5 py-1.5 rounded-xl text-xs font-bold border transition ${
-                  activePbsFilter === "word" ? "bg-teal-600 text-white border-teal-700" : "bg-white text-slate-600 border-teal-200"
+                class="pbs-filter-btn px-3.5 py-1.5 rounded-lg text-xs font-bold border transition ${
+                  activePbsFilter === "word" ? "bg-[#B06E66] text-white border-[#B06E66]" : "bg-[#FAF8F5] text-[#5C5753] border-[#E8E3DC]"
                 }">
-                📝 Word 空白紀錄表與量表
+                📝 空白紀錄表與量表
               </button>
               <button type="button" data-pbs-filter="pdf"
-                class="pbs-filter-btn px-3.5 py-1.5 rounded-xl text-xs font-bold border transition ${
-                  activePbsFilter === "pdf" ? "bg-teal-600 text-white border-teal-700" : "bg-white text-slate-600 border-teal-200"
+                class="pbs-filter-btn px-3.5 py-1.5 rounded-lg text-xs font-bold border transition ${
+                  activePbsFilter === "pdf" ? "bg-[#B06E66] text-white border-[#B06E66]" : "bg-[#FAF8F5] text-[#5C5753] border-[#E8E3DC]"
                 }">
-                📕 PDF 填寫範例與策略指南
+                📕 填寫範例與策略指南
               </button>
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-2 gap-3.5">
               ${filteredFiles.map(file => `
-                <div class="p-4 rounded-2xl bg-teal-50/40 border-2 border-teal-100 hover:border-teal-300 flex items-center justify-between gap-3 transition">
+                <div class="p-4 rounded-xl bg-white border border-[#E8E3DC] hover:border-[#B06E66] flex items-center justify-between gap-3 transition">
                   <div class="space-y-1 min-w-0">
                     <div class="flex items-center gap-2">
-                      <span class="text-[11px] font-bold px-2 py-0.5 rounded-md bg-white border border-teal-200 text-teal-800">${file.type}</span>
-                      <h5 class="font-black text-slate-900 text-xs sm:text-sm truncate">${file.name}</h5>
+                      <span class="text-[11px] font-bold px-2 py-0.5 rounded-md bg-[#FAF8F5] border border-[#E8E3DC] text-[#7E4842]">${file.type}</span>
+                      <h5 class="font-bold text-[#2C2A29] text-xs sm:text-sm truncate">${file.name}</h5>
                     </div>
-                    <p class="text-xs text-slate-600 leading-relaxed">${file.desc}</p>
+                    <p class="text-xs text-[#6E6A66] leading-relaxed">${file.desc}</p>
                   </div>
                   <a href="${file.url}" target="_blank" rel="noopener noreferrer"
-                    class="shrink-0 px-3.5 py-2 rounded-xl bg-teal-600 hover:bg-teal-700 text-white font-bold text-xs transition">
+                    class="shrink-0 px-3.5 py-2 rounded-lg bg-[#B06E66] hover:bg-[#96574F] text-white font-bold text-xs transition">
                     開啟 ↗
                   </a>
                 </div>
@@ -1473,26 +1467,26 @@
 
     function renderAdvocacyView() {
       return `
-        <section class="warm-card p-6 space-y-5 w-full">
-          <div class="border-b border-teal-100 pb-4 flex flex-wrap items-center justify-between gap-2">
-            <div class="flex items-center gap-3">
-              <span class="w-11 h-11 rounded-2xl bg-teal-100 border border-teal-200 flex items-center justify-center text-2xl">💡</span>
+        <section class="warm-card p-6 sm:p-10 space-y-6 w-full">
+          <div class="border-b border-[#ECE7DF] pb-5 flex flex-wrap items-center justify-between gap-2">
+            <div class="flex items-center gap-3.5">
+              <span class="w-11 h-11 rounded-xl bg-[#F9F2F1] border border-[#EAD8D6] flex items-center justify-center text-xl">💡</span>
               <div>
-                <h2 class="text-xl sm:text-2xl font-black text-teal-950">特教宣導資源 · 專業團隊與正向行為支持</h2>
-                <p class="text-xs sm:text-sm text-slate-500">點選下方主題按鈕即可切換檢視</p>
+                <h2 class="text-xl sm:text-2xl font-bold text-[#2C2A29]">特教宣導資源 · 專業團隊與正向行為支持</h2>
+                <p class="text-xs sm:text-sm text-[#6E6A66] mt-0.5">點選下方主題按鈕即可切換檢視</p>
               </div>
             </div>
           </div>
 
-          <div class="flex flex-wrap gap-2 border-b border-teal-100 pb-4">
+          <div class="flex flex-wrap gap-2 border-b border-[#ECE7DF] pb-4">
             ${ADVOCACY_SUBTABS.map(sub => {
               const isAct = sub.id === activeAdvocacySubtab;
               return `
                 <button type="button" data-adv-subtab="${sub.id}"
-                  class="adv-subtab-btn flex items-center gap-1.5 px-3.5 py-2 rounded-2xl font-bold text-xs sm:text-sm border-2 transition ${
+                  class="adv-subtab-btn flex items-center gap-1.5 px-3.5 py-2 rounded-lg font-bold text-xs sm:text-sm border transition ${
                     isAct
-                      ? "bg-teal-600 text-white border-teal-700 shadow-2xs"
-                      : "bg-teal-50/50 hover:bg-teal-100/70 text-teal-900 border-teal-100"
+                      ? "bg-[#B06E66] text-white border-[#B06E66]"
+                      : "bg-[#FAF8F5] hover:bg-[#F3EFEA] text-[#5C5753] border-[#E8E3DC]"
                   }">
                   <span>${sub.icon}</span>
                   <span>${sub.label}</span>
@@ -1515,21 +1509,21 @@
         : links.filter(l => l.category === activeLinksFilter);
 
       return `
-        <section class="warm-card p-6 space-y-5 w-full">
-          <div class="flex flex-wrap items-center justify-between gap-3 border-b border-teal-100 pb-4">
-            <div class="flex items-center gap-3">
-              <span class="w-11 h-11 rounded-2xl bg-teal-100 border border-teal-200 flex items-center justify-center text-2xl">🔗</span>
+        <section class="warm-card p-6 sm:p-10 space-y-6 w-full">
+          <div class="flex flex-wrap items-center justify-between gap-3 border-b border-[#ECE7DF] pb-5">
+            <div class="flex items-center gap-3.5">
+              <span class="w-11 h-11 rounded-xl bg-[#F9F2F1] border border-[#EAD8D6] flex items-center justify-center text-xl">🔗</span>
               <div>
-                <h2 class="text-xl sm:text-2xl font-black text-teal-950">特教相關好站連結</h2>
-                <p class="text-xs sm:text-sm text-slate-500">官方特教行政資源、多媒體教材社群與職能治療專欄</p>
+                <h2 class="text-xl sm:text-2xl font-bold text-[#2C2A29]">特教相關好站連結</h2>
+                <p class="text-xs sm:text-sm text-[#6E6A66] mt-0.5">官方特教行政資源、多媒體教材社群與職能治療專欄</p>
               </div>
             </div>
 
             <div class="flex flex-wrap gap-1.5">
               ${["all", "官方行政與鑑定資源", "教材與社群交流", "專業治療與親職專欄"].map(cat => `
                 <button type="button" data-links-filter="${cat}"
-                  class="links-filter-btn px-3 py-1.5 rounded-xl text-xs font-bold border transition ${
-                    activeLinksFilter === cat ? "bg-teal-600 text-white border-teal-700" : "bg-white text-slate-600 border-teal-200"
+                  class="links-filter-btn px-3 py-1.5 rounded-lg text-xs font-bold border transition ${
+                    activeLinksFilter === cat ? "bg-[#B06E66] text-white border-[#B06E66]" : "bg-[#FAF8F5] text-[#5C5753] border-[#E8E3DC]"
                   }">
                   ${cat === "all" ? `全部 (${links.length})` : cat}
                 </button>
@@ -1539,18 +1533,18 @@
 
           <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
             ${filtered.map(item => `
-              <div class="p-5 rounded-2xl bg-teal-50/40 border-2 border-teal-100 hover:border-teal-300 transition flex flex-col justify-between gap-4">
-                <div class="space-y-2">
+              <div class="p-5 rounded-xl bg-[#FAF8F5] border border-[#E8E3DC] hover:border-[#B06E66] transition flex flex-col justify-between gap-4">
+                <div class="space-y-2.5">
                   <div class="flex items-center justify-between">
-                    <span class="text-xs font-bold px-2.5 py-0.5 rounded-full bg-white border border-teal-200 text-teal-800">${item.category}</span>
-                    <span class="text-2xl">${item.icon}</span>
+                    <span class="text-xs font-bold px-2.5 py-0.5 rounded-md bg-white border border-[#EAD8D6] text-[#7E4842]">${item.category}</span>
+                    <span class="text-xl">${item.icon}</span>
                   </div>
-                  <h3 class="font-black text-slate-900 text-base">${item.title}</h3>
-                  <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">${item.description}</p>
+                  <h3 class="font-bold text-[#2C2A29] text-base">${item.title}</h3>
+                  <p class="text-xs sm:text-sm text-[#6E6A66] leading-relaxed">${item.description}</p>
                 </div>
-                <div class="pt-3 border-t border-teal-100">
+                <div class="pt-3 border-t border-[#E8E3DC]">
                   <a href="${item.url}" target="_blank" rel="noopener noreferrer"
-                    class="block text-center py-2 px-4 rounded-xl bg-teal-600 hover:bg-teal-700 text-white font-bold text-xs transition">
+                    class="block text-center py-2 px-4 rounded-lg bg-[#B06E66] hover:bg-[#96574F] text-white font-bold text-xs transition">
                     前往網站 ↗
                   </a>
                 </div>
@@ -1577,7 +1571,6 @@
         });
       });
 
-      // 鑑定提報專區雙頁籤切換
       vp.querySelectorAll(".referral-subtab-btn").forEach(btn => {
         btn.addEventListener("click", () => {
           activeReferralSubtab = btn.getAttribute("data-referral-subtab");
@@ -1606,7 +1599,6 @@
         });
       });
 
-      // IEP 管理員相關事件
       const btnToggleIepAdmin = document.getElementById("btnToggleIepAdmin");
       if (btnToggleIepAdmin) {
         btnToggleIepAdmin.addEventListener("click", () => {
@@ -1636,7 +1628,6 @@
         });
       });
 
-      // 🌟 特教工具箱登入事件
       const btnSubmitSpecialTools = document.getElementById("btnSubmitSpecialToolsLogin");
       const specialToolsInput = document.getElementById("specialToolsPwdInput");
       if (btnSubmitSpecialTools && specialToolsInput) {
@@ -1665,7 +1656,6 @@
         });
       }
 
-      // 🌟 動態折疊抽屜群監聽（支援任意數量的分類抽屜）
       vp.querySelectorAll(".drawer-toggle-btn").forEach(btn => {
         btn.addEventListener("click", () => {
           const cat = btn.getAttribute("data-drawer-cat");
@@ -1738,16 +1728,16 @@
       if (!body) return;
       const allItems = getAllSearchableItems();
       body.innerHTML = `
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-2.5">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
           ${allItems.map(item => `
-            <div class="p-3.5 rounded-2xl bg-teal-50/50 border border-teal-100 flex items-center justify-between gap-3">
+            <div class="p-4 rounded-xl bg-[#FAF8F5] border border-[#E8E3DC] flex items-center justify-between gap-3">
               <div class="min-w-0">
-                <div class="text-[11px] font-bold text-teal-700">${item.category}</div>
-                <div class="font-black text-slate-900 text-xs sm:text-sm truncate mt-0.5">${item.title}</div>
+                <div class="text-[11px] font-bold text-[#B06E66]">${item.category}</div>
+                <div class="font-bold text-[#2C2A29] text-xs sm:text-sm truncate mt-0.5">${item.title}</div>
               </div>
               <div class="shrink-0">
                 <a href="${item.url}" target="_blank" rel="noopener noreferrer"
-                  class="px-3 py-1.5 rounded-xl bg-teal-600 hover:bg-teal-700 text-white font-bold text-xs">
+                  class="px-3 py-1.5 rounded-lg bg-[#B06E66] hover:bg-[#96574F] text-white font-bold text-xs">
                   開啟 ↗
                 </a>
               </div>
@@ -1782,27 +1772,27 @@
 
       if (matches.length === 0) {
         grid.innerHTML = `
-          <div class="col-span-full py-5 text-center text-slate-500 text-xs sm:text-sm">
-            找不到符合「${query}」的項目，請試試搜尋「學習障礙」、「ABCR」或「王意中」。
+          <div class="col-span-full py-5 text-center text-[#7D7873] text-xs sm:text-sm">
+            找不到符合「${query}」的項目，請試試搜尋「學習障礙」、「行為觀察」或「王意中」。
           </div>
         `;
         return;
       }
 
       grid.innerHTML = matches.map(m => `
-        <div class="p-4 rounded-2xl bg-white border border-amber-200 flex flex-col justify-between gap-3 shadow-2xs">
+        <div class="p-4 rounded-xl bg-white border border-[#EAD8D6] flex flex-col justify-between gap-3">
           <div>
-            <span class="text-[11px] font-bold text-teal-700">${m.category}</span>
-            <h4 class="font-black text-slate-900 text-sm mt-1">${m.title}</h4>
-            <p class="text-xs text-slate-600 mt-1 line-clamp-2">${m.desc}</p>
+            <span class="text-[11px] font-bold text-[#B06E66]">${m.category}</span>
+            <h4 class="font-bold text-[#2C2A29] text-sm mt-1">${m.title}</h4>
+            <p class="text-xs text-[#6E6A66] mt-1 line-clamp-2">${m.desc}</p>
           </div>
-          <div class="flex items-center gap-2 pt-2 border-t border-slate-100">
+          <div class="flex items-center gap-2 pt-2 border-t border-[#F0ECE6]">
             <a href="${m.url}" target="_blank" rel="noopener noreferrer"
-              class="flex-1 text-center py-1.5 px-3 rounded-xl bg-teal-600 hover:bg-teal-700 text-white font-bold text-xs">
+              class="flex-1 text-center py-1.5 px-3 rounded-lg bg-[#B06E66] hover:bg-[#96574F] text-white font-bold text-xs">
               開啟連結 ↗
             </a>
             <button type="button" data-search-tab="${m.tab}" data-search-subtab="${m.subtab || ''}"
-              class="search-jump-btn py-1.5 px-3 rounded-xl bg-teal-50 hover:bg-teal-100 border border-teal-200 text-teal-900 font-bold text-xs">
+              class="search-jump-btn py-1.5 px-3 rounded-lg bg-[#FAF8F5] hover:bg-[#F3EFEA] border border-[#E2DCD3] text-[#5C5753] font-bold text-xs">
               前往分頁
             </button>
           </div>
@@ -1857,7 +1847,6 @@
         if (e.target === cloudModal) cloudModal.classList.add("hidden");
       });
 
-      // IEP 管理員對話框事件
       document.getElementById("btnCancelIepAdminLogin").onclick = () => {
         document.getElementById("iepAdminLoginDialog").close();
       };
