@@ -586,7 +586,7 @@
       return `
         <div class="w-full flex-1 flex flex-col justify-center gap-6">
           
-          <!-- 上方主視覺橫幅區（比例均衡、線條圖示、左右黃金對齊） -->
+          <!-- 上方主視覺橫幅區 -->
           <section class="warm-card bg-white p-8 sm:p-12 lg:px-16 lg:py-14 w-full relative overflow-hidden">
             <div class="pointer-events-none absolute -top-28 -right-28 w-96 h-96 rounded-full bg-[#FAF8F5] border border-[#F0ECE6] opacity-90"></div>
             
@@ -631,9 +631,9 @@
             </div>
           </section>
 
-          <!-- 下方四欄並排核心入口卡片（比例飽滿、大字體、極簡細線條圖示） -->
+          <!-- 下方四欄並排核心入口卡片（極簡純標題版） -->
           <section class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 w-full">
-            <button type="button" data-goto-tab="iep" class="warm-card warm-card-hover hero-jump-btn text-left p-7 flex flex-col justify-between gap-6 group">
+            <button type="button" data-goto-tab="iep" class="warm-card warm-card-hover hero-jump-btn text-left p-7 flex flex-col justify-between gap-7 group">
               <div class="flex items-center justify-between">
                 <div class="w-12 h-12 rounded-xl bg-[#FAF8F5] border border-[#E8E3DC] text-[#B06E66] flex items-center justify-center group-hover:bg-[#B06E66] group-hover:text-white transition">
                   <svg class="w-6 h-6 stroke-[1.75]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -645,17 +645,13 @@
                 </div>
                 <span class="text-xs font-bold px-2.5 py-1 rounded-md bg-[#F9F2F1] text-[#7E4842] border border-[#EAD8D6]">會議排程</span>
               </div>
-              <div class="space-y-2">
-                <h3 class="font-bold text-[#2C2A29] text-lg sm:text-xl">IEP 會議預約</h3>
-                <p class="text-sm sm:text-base text-[#5C5753] leading-relaxed">線上登記會議室與節次，即時同步全校預約狀態。</p>
-              </div>
-              <div class="pt-3 border-t border-[#F0ECE6] text-sm sm:text-base text-[#B06E66] font-bold flex items-center justify-between">
-                <span>前往預約</span>
-                <span class="transform group-hover:translate-x-1 transition">→</span>
+              <div class="pt-3 border-t border-[#F0ECE6] flex items-center justify-between">
+                <h3 class="font-bold text-[#2C2A29] text-lg sm:text-xl group-hover:text-[#B06E66] transition">IEP 會議預約</h3>
+                <span class="text-lg text-[#B06E66] font-bold transform group-hover:translate-x-1 transition">→</span>
               </div>
             </button>
 
-            <button type="button" data-goto-tab="referral" class="warm-card warm-card-hover hero-jump-btn text-left p-7 flex flex-col justify-between gap-6 group">
+            <button type="button" data-goto-tab="referral" class="warm-card warm-card-hover hero-jump-btn text-left p-7 flex flex-col justify-between gap-7 group">
               <div class="flex items-center justify-between">
                 <div class="w-12 h-12 rounded-xl bg-[#FAF8F5] border border-[#E8E3DC] text-[#B06E66] flex items-center justify-center group-hover:bg-[#B06E66] group-hover:text-white transition">
                   <svg class="w-6 h-6 stroke-[1.75]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -667,17 +663,13 @@
                 </div>
                 <span class="text-xs font-bold px-2.5 py-1 rounded-md bg-[#F9F2F1] text-[#7E4842] border border-[#EAD8D6]">鑑定安置</span>
               </div>
-              <div class="space-y-2">
-                <h3 class="font-bold text-[#2C2A29] text-lg sm:text-xl">鑑定安置提報專區</h3>
-                <p class="text-sm sm:text-base text-[#5C5753] leading-relaxed">查看四大障別課堂觀察重點、應備紙本佐證與表件下載。</p>
-              </div>
-              <div class="pt-3 border-t border-[#F0ECE6] text-sm sm:text-base text-[#B06E66] font-bold flex items-center justify-between">
-                <span>檢視基準與表件</span>
-                <span class="transform group-hover:translate-x-1 transition">→</span>
+              <div class="pt-3 border-t border-[#F0ECE6] flex items-center justify-between">
+                <h3 class="font-bold text-[#2C2A29] text-lg sm:text-xl group-hover:text-[#B06E66] transition">鑑定安置提報專區</h3>
+                <span class="text-lg text-[#B06E66] font-bold transform group-hover:translate-x-1 transition">→</span>
               </div>
             </button>
 
-            <button type="button" data-goto-tab="communication" class="warm-card warm-card-hover hero-jump-btn text-left p-7 flex flex-col justify-between gap-6 group">
+            <button type="button" data-goto-tab="communication" class="warm-card warm-card-hover hero-jump-btn text-left p-7 flex flex-col justify-between gap-7 group">
               <div class="flex items-center justify-between">
                 <div class="w-12 h-12 rounded-xl bg-[#FAF8F5] border border-[#E8E3DC] text-[#B06E66] flex items-center justify-center group-hover:bg-[#B06E66] group-hover:text-white transition">
                   <svg class="w-6 h-6 stroke-[1.75]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -689,17 +681,13 @@
                 </div>
                 <span class="text-xs font-bold px-2.5 py-1 rounded-md bg-[#F9F2F1] text-[#7E4842] border border-[#EAD8D6]">支持服務</span>
               </div>
-              <div class="space-y-2">
-                <h3 class="font-bold text-[#2C2A29] text-lg sm:text-xl">資源班運作模式</h3>
-                <p class="text-sm sm:text-base text-[#5C5753] leading-relaxed">了解抽離式、外加式課程及間接諮詢服務之合作型態。</p>
-              </div>
-              <div class="pt-3 border-t border-[#F0ECE6] text-sm sm:text-base text-[#B06E66] font-bold flex items-center justify-between">
-                <span>了解運作模式</span>
-                <span class="transform group-hover:translate-x-1 transition">→</span>
+              <div class="pt-3 border-t border-[#F0ECE6] flex items-center justify-between">
+                <h3 class="font-bold text-[#2C2A29] text-lg sm:text-xl group-hover:text-[#B06E66] transition">資源班運作模式</h3>
+                <span class="text-lg text-[#B06E66] font-bold transform group-hover:translate-x-1 transition">→</span>
               </div>
             </button>
 
-            <button type="button" data-goto-tab="specialTools" class="warm-card warm-card-hover hero-jump-btn text-left p-7 flex flex-col justify-between gap-6 group">
+            <button type="button" data-goto-tab="specialTools" class="warm-card warm-card-hover hero-jump-btn text-left p-7 flex flex-col justify-between gap-7 group">
               <div class="flex items-center justify-between">
                 <div class="w-12 h-12 rounded-xl bg-[#FAF8F5] border border-[#E8E3DC] text-[#B06E66] flex items-center justify-center group-hover:bg-[#B06E66] group-hover:text-white transition">
                   <svg class="w-6 h-6 stroke-[1.75]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -709,13 +697,9 @@
                 </div>
                 <span class="text-xs font-bold px-2.5 py-1 rounded-md bg-[#F9F2F1] text-[#7E4842] border border-[#EAD8D6]">專用整合</span>
               </div>
-              <div class="space-y-2">
-                <h3 class="font-bold text-[#2C2A29] text-lg sm:text-xl">特教工具箱</h3>
-                <p class="text-sm sm:text-base text-[#5C5753] leading-relaxed">整合校內特教教學輔助、行政自動化與經費核銷工具。</p>
-              </div>
-              <div class="pt-3 border-t border-[#F0ECE6] text-sm sm:text-base text-[#B06E66] font-bold flex items-center justify-between">
-                <span>進入工具箱</span>
-                <span class="transform group-hover:translate-x-1 transition">→</span>
+              <div class="pt-3 border-t border-[#F0ECE6] flex items-center justify-between">
+                <h3 class="font-bold text-[#2C2A29] text-lg sm:text-xl group-hover:text-[#B06E66] transition">特教工具箱</h3>
+                <span class="text-lg text-[#B06E66] font-bold transform group-hover:translate-x-1 transition">→</span>
               </div>
             </button>
           </section>
